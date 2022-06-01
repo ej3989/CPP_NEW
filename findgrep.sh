@@ -7,4 +7,4 @@ then
 	directory="."
 fi
 
-find "$directory". -type f | xargs grep -nH "$pattern"
+find "$directory". -type f | xargs grep -nH "$pattern" > findgrep.txt
