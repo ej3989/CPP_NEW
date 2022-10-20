@@ -4,20 +4,26 @@
 #include <algorithm>
 #include <termio.h>
 #include <iomanip>
+#include <unistd.h>
 
 void totalManager::loadCar(){
 
 
 	stockManageCar *add_car ;
 	add_car = new stockManageCar("HMC", "Normal", "grandeur","red","sedan/suv",5000,25);
+	add_car->saleIncreasing(12);
 	carlist.push_back(*add_car);
 	add_car = new stockManageCar("KIA", "HEVcar", "staria","black","sedan",4000,30);
+	add_car->saleIncreasing(22);
 	carlist.push_back(*add_car);
 	add_car = new stockManageCar("BENTZ", "EVcar", "E-class","white","sedan",9000,12);
+	add_car->saleIncreasing(31);
 	carlist.push_back(*add_car);
 	add_car = new stockManageCar("KIA", "PBV", "sportage","silver","suv",3500,30);
+	add_car->saleIncreasing(9);
 	carlist.push_back(*add_car);
 	add_car = new stockManageCar("HMC", "Noraml", "G90","red","sedan",8200,2);
+	add_car->saleIncreasing(50);
 	carlist.push_back(*add_car);
 
 
@@ -40,9 +46,10 @@ void totalManager::loadHuman(){
 }
 
 void totalManager::printTop5(){
-	sort(carlist.begin(),carlist.end(),[](stockManageCar a, stockManageCar b)->bool{return (a.getSale()>b.getSale());});
+	sort(carlist.begin(),carlist.end(),[](stockManageCar a, stockManageCar b)->bool{return (a.getSaleQuan()>b.getSaleQuan());});
 	for(int i=0;i<5 ; i ++){	
-           cout<<endl<<setw(30)<<left<<carlist[i].getBrand()<<setw(30)<<left<<carlist[i].getEngine()<<setw(30)<<left<<carlist[i].getCarName()<<setw(30)<<left<<carlist[i].getColor()<<setw(30)<<left<<carlist[i].getType()<<setw(30)<<left<<carlist[i].getQuantity()<<endl<<endl;
+           cout<<endl<<setw(30)<<left<<carlist[i].getBrand()<<setw(30)<<left<<carlist[i].getEngine()<<setw(30)<<left<<carlist[i].getCarName()<<setw(30)<<left<<carlist[i].getColor()<<setw(30)<<left<<carlist[i].getType()<<setw(30)<<left<<carlist[i].getPrice()<<endl<<endl;
+           //cout<<endl<<setw(30)<<left<<carlist[i].getBrand()<<setw(30)<<left<<carlist[i].getEngine()<<setw(30)<<left<<carlist[i].getCarName()<<setw(30)<<left<<carlist[i].getColor()<<setw(30)<<left<<carlist[i].getType()<<setw(30)<<left<<carlist[i].getSaleQuan()<<endl<<endl;
 	}
 	sleep(10);
 }
@@ -77,6 +84,7 @@ void totalManager::join(){
 	string name, phone_number,id,passwd,address;
 	int admin(0);
 
+	cin.getloc();
 	cout << "name : " ;
 	getline(cin, name,'\n');
 
@@ -121,6 +129,7 @@ void totalManager::addCarList(){
 	string brand , engine, carName, color,type;
 	int price,quantity;
 
+	cin.getloc();
 	cout << "Brand(KIA/HYUNDAI/BENTZ) : " ;
 	getline(cin, brand,'\n');
 
