@@ -56,6 +56,7 @@ void totalManager::printTop5(){
 		   //<<carlist[i].getType()<<setw(30)<<left<<carlist[i].getSaleQuan()<<endl<<endl;
 	}
 	cin.get();
+	cin.get();
 }
 Customer& totalManager::findUser(string name){
 	
