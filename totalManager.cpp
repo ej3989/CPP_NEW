@@ -77,9 +77,22 @@ void totalManager::saveHuman(){
 	// 필요가 없음...
 }
 void totalManager::printCarList(){
-	for( auto out_data : carlist){
-		cout << out_data.getBrand() << out_data.getCarId() << endl;
+//	for( auto out_data : carlist){
+//		cout << out_data.getBrand() << out_data.getCarId() << endl;
+//	}	
+	cout<<endl<<setw(30)<<left<<"브랜드"<<setw(30)<<left<<"엔진"<<setw(30)<<left<<"차량이름"<<setw(30)<<left<<"색상"<<setw(30)<<left<<"타입"<<setw(30)<<left<<"가격"<<setw(30)<<left<<
+		"재고 수량"<<setw(30)<<left<<"판매수량"<<endl<<endl;
+	for(auto carTemp: carlist){	
+		cout<<endl<<setw(30)<<left<<carTemp.getBrand()<<setw(30)<<left<<carTemp.getEngine()<<setw(30)
+			<<left<<carTemp.getCarName()<<setw(30)<<left<<carTemp.getColor()<<setw(30)<<left<<carTemp.getType()
+			<<setw(30)<<left<<carTemp.getPrice()<<setw(30)<<left<<carTemp.getQuantity()<<setw(30)<<left<<carTemp.getSaleQuan()<<endl<<endl;
+		/////cout<<endl<<setw(30)<<left<<carlist[i].getBrand()<<setw(30)<<left<<carlist[i].getEngine()
+		//<<setw(30)<<left<<carlist[i].getCarName()<<setw(30)<<left<<carlist[i].getColor()<<setw(30)<<left
+		//<<carlist[i].getType()<<setw(30)<<left<<carlist[i].getSaleQuan()<<endl<<endl;
 	}
+	getchar();
+	getchar();
+
 }
 void totalManager::printHuman(){
 
@@ -104,7 +117,7 @@ void totalManager::join(){
 
 	cout << "address : ";
 	getline(cin, address,'\n');
-	
+
 	cout << " 생성 계정 타입 user: 0 , admin : 1 " << endl;
 	int usertype;
 	cin >> usertype ;
@@ -121,7 +134,7 @@ void totalManager::join(){
 				break;
 
 		}
-		
+
 	}
 
 
@@ -156,9 +169,12 @@ void totalManager::addCarList(){
 	cout << "Qunatity : " ;
 	cin >> quantity ;
 
-	stockManageCar add_car(brand,engine,carName,color,type,price,quantity);
+	stockManageCar add_car(brand,engine,carName,color,type,price,quantity,0);
 
 	carlist.push_back(add_car);
+
+
+
 }
 
 
