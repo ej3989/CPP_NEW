@@ -89,8 +89,8 @@ void totalManager::join(){
 	string name, phone_number,id,passwd,address;
 	int admin(0);
 
-	cin.getloc();
-	cout << "name : " ;
+	getchar();
+	cout << "name : " ; 
 	getline(cin, name,'\n');
 
 	cout << "Phone number : ";
@@ -134,7 +134,7 @@ void totalManager::addCarList(){
 	string brand , engine, carName, color,type;
 	int price,quantity;
 
-	cin.getloc();
+	getchar();
 	cout << "Brand(KIA/HYUNDAI/BENTZ) : " ;
 	getline(cin, brand,'\n');
 
