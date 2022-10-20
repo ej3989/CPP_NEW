@@ -39,13 +39,23 @@ int main(){
     if(ioctl(0, TCSETAF, &oldtbuf)==-1) {perror("ioctl"); exit(1);}
     while(1){
         if(ioctl(0, TCSETAF, &tbuf)==-1) {perror("ioctl"); exit(1);}
-        clear();
+        nclear();
         cout<<"===========================================================================";
         cout<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl;
         cout<<right<<setw(78)<<"1. 일반 로그인 2. 관리자 로그인 3. 회원가입 4. 종료 :"<<endl;
         cout<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl;
         cout<<"===========================================================================";
+        char m;
+        try{
         cin>>choiceMenu;
+            if(cin.fail()) throw m;
+        }
+        catch(char x){
+            cout<<"예외발생"<<endl;
+            cin.clear();
+            cin.ignore();
+            continue;
+        }
         if(ioctl(0, TCSETAF, &oldtbuf)==-1) {perror("ioctl"); exit(1);}
         string tempID, tempPW;
         Customer nowUser;
@@ -55,7 +65,7 @@ int main(){
         switch(choiceMenu){
             case 1 :
             case 2 :
-                clear();
+                nclear();
                 if(ioctl(0, TCSETAF, &oldtbuf)==-1) {perror("ioctl"); exit(1);}
                 cout<<endl;
                 cout<<"ID : ";
@@ -71,7 +81,7 @@ int main(){
                 tempPW=A;
                 if(ioctl(0, TCSETAF, &oldtbuf)==-1) {perror("ioctl"); exit(1);}
                 if(nowUser.correct_psswd(tempID,tempPW)){
-                    clear();
+                    nclear();
                     brouse(nowUser.checkAdmin(),King,nowUser,tbuf,oldtbuf,carList);
                 }
                 else cout<<"잘못 입력하셨습니다"<<endl;
@@ -79,9 +89,8 @@ int main(){
 
             case 3 :
                 cout<<endl;
-                if(ioctl(0, TCSETAF, &tbuf)==-1) {perror("ioctl"); exit(1);}
-                King.join();
                 if(ioctl(0, TCSETAF, &oldtbuf)==-1) {perror("ioctl"); exit(1);}
+                King.join();
                 break;
             case 4:
                 exit(0);
@@ -96,7 +105,7 @@ int main(){
 }
 void brouse(int superFlag,totalManager& King,Customer & nowUser,struct termio tbuf,struct termio oldtbuf,vector<stockManageCar> carList){
     while(1){
-        clear();
+        nclear();
         if(ioctl(0, TCSETAF, &tbuf)==-1) {perror("ioctl"); exit(1);}
         cout<<"===========================================================================";
         cout<<endl<<endl<<endl<<endl<<endl;
@@ -113,12 +122,22 @@ void brouse(int superFlag,totalManager& King,Customer & nowUser,struct termio tb
         cout<<endl<<endl<<endl<<endl;
    cout<<"===========================================================================";
    int number;
+   char m;
+   try{
    cin>>number;
+   if(cin.fail()) throw m;
+        }
+        catch(char x){
+            cout<<"예외발생"<<endl;
+            cin.clear();
+            cin.ignore();
+            continue;
+        }
    if(ioctl(0, TCSETAF, &oldtbuf)==-1) {perror("ioctl"); exit(1);}
    switch(number){
         case 1:
             for(auto G : carList){
-                clear();
+                nclear();
                 cout<<endl;
                 cout<<"===========================================================================";
                 cout<<endl<<endl<<endl<<endl;
@@ -154,6 +173,7 @@ void brouse(int superFlag,totalManager& King,Customer & nowUser,struct termio tb
             //stockMangagerCar 리스트 소환하기.
             break;
         case 3:
+            if(ioctl(0, TCSETAF, &oldtbuf)==-1) {perror("ioctl"); exit(1);}
             //장바구니 리스트 확인
             // 몇번 구매하시겠습니다. 
             //카아이디 포문 찾고, 거기 퀀티티 감소시키는거
@@ -161,7 +181,7 @@ void brouse(int superFlag,totalManager& King,Customer & nowUser,struct termio tb
             //구매여부 확인
             break;
         case 4:
-            clear();
+            nclear();
             if(ioctl(0, TCSETAF, &tbuf)==-1) {perror("ioctl"); exit(1);}
             cout<<"===========================================================================";
             cout<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl;
@@ -171,7 +191,7 @@ void brouse(int superFlag,totalManager& King,Customer & nowUser,struct termio tb
             int choiceBrand;
             cin>>choiceBrand;
             if(ioctl(0, TCSETAF, &oldtbuf)==-1) {perror("ioctl"); exit(1);}
-            clear();
+            nclear();
             cout<<"===========================================================================";
             cout<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl;
             cout<<right<<setw(45)<<"고객의 위치를 입력해주세요"<<endl;
