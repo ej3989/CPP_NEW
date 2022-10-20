@@ -49,7 +49,7 @@ void totalManager::printTop5(){
 	sort(carlist.begin(),carlist.end(),[](stockManageCar a, stockManageCar b)->bool{return (a.getSaleQuan()>b.getSaleQuan());});
 	for(int i=0;i<5 ; i ++){	
            cout<<endl<<setw(30)<<left<<carlist[i].getBrand()<<setw(30)<<left<<carlist[i].getEngine()<<setw(30)<<left<<carlist[i].getCarName()<<setw(30)<<left<<carlist[i].getColor()<<setw(30)<<left<<carlist[i].getType()<<setw(30)<<left<<carlist[i].getPrice()<<endl<<endl;
-           //cout<<endl<<setw(30)<<left<<carlist[i].getBrand()<<setw(30)<<left<<carlist[i].getEngine()<<setw(30)<<left<<carlist[i].getCarName()<<setw(30)<<left<<carlist[i].getColor()<<setw(30)<<left<<carlist[i].getType()<<setw(30)<<left<<carlist[i].getSaleQuan()<<endl<<endl;
+           /////cout<<endl<<setw(30)<<left<<carlist[i].getBrand()<<setw(30)<<left<<carlist[i].getEngine()<<setw(30)<<left<<carlist[i].getCarName()<<setw(30)<<left<<carlist[i].getColor()<<setw(30)<<left<<carlist[i].getType()<<setw(30)<<left<<carlist[i].getSaleQuan()<<endl<<endl;
 	}
 	sleep(10);
 }
