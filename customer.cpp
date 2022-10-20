@@ -14,6 +14,7 @@ Customer::Customer(string name = "", string phone_number = "", string id = "",
   this->admin = admin;
   this->address = address;
   car_count = 0;
+  
 };
 Customer::~Customer() {}
 string Customer::getPhone() { return this->phone_number; }

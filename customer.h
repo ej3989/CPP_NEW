@@ -18,7 +18,6 @@ private:
   vector<int> cart;
   vector<int> buying_list;
   int car_count;
-
 public:
   Customer(){
     this->name = "";
