@@ -36,7 +36,9 @@ int main(){
     cout<<"===========================================================================";
     getchar();
     int choiceMenu;
+    if(ioctl(0, TCSETAF, &oldtbuf)==-1) {perror("ioctl"); exit(1);}
     while(1){
+        if(ioctl(0, TCSETAF, &tbuf)==-1) {perror("ioctl"); exit(1);}
         clear();
         cout<<"===========================================================================";
         cout<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl;
@@ -44,6 +46,7 @@ int main(){
         cout<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl;
         cout<<"===========================================================================";
         cin>>choiceMenu;
+        if(ioctl(0, TCSETAF, &oldtbuf)==-1) {perror("ioctl"); exit(1);}
         string tempID, tempPW;
         Customer nowUser;
         vector<stockManageCar> carList = King.getcarlist(); //리스트 대입
@@ -66,20 +69,19 @@ int main(){
                     if(ch==CR) break; printf("*");A+=ch;}
 
                 tempPW=A;
+                if(ioctl(0, TCSETAF, &oldtbuf)==-1) {perror("ioctl"); exit(1);}
                 if(nowUser.correct_psswd(tempID,tempPW)){
                     clear();
-                    if(ioctl(0, TCSETAF, &oldtbuf)==-1) {perror("ioctl"); exit(1);}
                     brouse(nowUser.checkAdmin(),King,nowUser,tbuf,oldtbuf,carList);
                 }
                 else cout<<"잘못 입력하셨습니다"<<endl;
-                if(ioctl(0, TCSETAF, &tbuf)==-1) {perror("ioctl"); exit(1);}
                 break;
 
             case 3 :
                 cout<<endl;
                 if(ioctl(0, TCSETAF, &tbuf)==-1) {perror("ioctl"); exit(1);}
                 King.join();
-                if(ioctl(0, TCSETAF, &tbuf)==-1) {perror("ioctl"); exit(1);}
+                if(ioctl(0, TCSETAF, &oldtbuf)==-1) {perror("ioctl"); exit(1);}
                 break;
             case 4:
                 exit(0);
@@ -112,6 +114,7 @@ void brouse(int superFlag,totalManager& King,Customer & nowUser,struct termio tb
    cout<<"===========================================================================";
    int number;
    cin>>number;
+   if(ioctl(0, TCSETAF, &oldtbuf)==-1) {perror("ioctl"); exit(1);}
    switch(number){
         case 1:
             for(auto G : carList){
