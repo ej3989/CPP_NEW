@@ -7,6 +7,7 @@
 #include "customer.h"
 using namespace std;
 
+////
 class totalManager {
 	vector<stockManageCar> carlist;
 	vector<Customer> customerData;
