@@ -40,13 +40,13 @@ int main(){
         clear();
         cout<<"===========================================================================";
         cout<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl;
-        cout<<right<<setw(78)<<"1. 일반 로그인 2. 관리자 로그인 3. 회원가입 :"<<endl;
+        cout<<right<<setw(78)<<"1. 일반 로그인 2. 관리자 로그인 3. 회원가입 4. 종료 :"<<endl;
         cout<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl;
         cout<<"===========================================================================";
         cin>>choiceMenu;
         string tempID, tempPW;
         Customer nowUser;
-        vector<stockManageCar> carList = King.getList(); //여기에 대입할거 찾아
+        vector<stockManageCar> carList = King.getcarlist(); //리스트 대입
         char ch;
         string A="";
         switch(choiceMenu){
@@ -81,6 +81,8 @@ int main(){
                 King.join();
                 if(ioctl(0, TCSETAF, &tbuf)==-1) {perror("ioctl"); exit(1);}
                 break;
+            case 4:
+                exit(0);
             default :
                 cout<<"잘못 입력하셨습니다"<<endl;
                 break;
@@ -116,10 +118,10 @@ void brouse(int superFlag,totalManager& King,Customer & nowUser,struct termio tb
                 clear();
                 cout<<endl;
                 cout<<"===========================================================================";
-                cout<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl;
+                cout<<endl<<endl<<endl<<endl;
                 cout<<endl<<setw(11)<<left<<"Brand"<<setw(11)<<left<<"Engine"<<setw(11)<<left<<"carname"<<setw(11)<<left<<"Color"<<setw(11)<<left<<"Type"<<setw(11)<<left<<"Price"<<setw(11)<<left<<"Quantity"<<endl<<endl;
                 cout<<endl<<setw(11)<<left<<G.getBrand()<<setw(11)<<left<<G.getEngine()<<setw(11)<<left<<G.getCarName()<<setw(11)<<left<<G.getColor()<<setw(11)<<left<<G.getType()<<setw(11)<<left<<G.getSale()<<setw(11)<<left<<G.getQuantity()<<endl<<endl;
-                cout<<endl<<endl<<endl<<endl<<endl;
+                cout<<endl<<endl<<endl<<endl;
                 cout<<"==========================================================================="<<endl;
                 M:
                 cout<<"장바구니에 넣으시겠습니까?(y/n) : ";
@@ -149,6 +151,9 @@ void brouse(int superFlag,totalManager& King,Customer & nowUser,struct termio tb
             //stockMangagerCar 리스트 소환하기.
             break;
         case 3:
+            //장바구니 리스트 확인
+            // 몇번 구매하시겠습니다. 
+            //카아이디 포문 찾고, 거기 퀀티티 감소시키는거
             //nowUser.addCart(); //카리스트 뷰로 보기
             //구매여부 확인
             break;
