@@ -2,6 +2,8 @@
 #include <fstream>
 #include <iostream>
 #include <algorithm>
+#include <termio.h>
+#include <iomanip>
 
 void totalManager::loadCar(){
 
@@ -37,6 +39,13 @@ void totalManager::loadHuman(){
 
 }
 
+void totalManager::printTop5(){
+	sort(carlist.begin(),carlist.end(),[](stockManageCar a, stockManageCar b)->bool{return (a.getSale()>b.getSale());});
+	for(int i=0;i<5 ; i ++){	
+           cout<<endl<<setw(30)<<left<<carlist[i].getBrand()<<setw(30)<<left<<carlist[i].getEngine()<<setw(30)<<left<<carlist[i].getCarName()<<setw(30)<<left<<carlist[i].getColor()<<setw(30)<<left<<carlist[i].getType()<<setw(30)<<left<<carlist[i].getQuantity()<<endl<<endl;
+	}
+	sleep(10);
+}
 Customer& totalManager::findUser(string name){
 	
 	auto it = find_if(customerData.begin(),customerData.end(),[name](Customer a)->bool{ return (a.getName() == name);});
