@@ -21,6 +21,7 @@ public:
 	void saveHuman();
 	void printCarList();
 	void printHuman();
+	void printTop5();
 	vector<stockManageCar> getcarlist(){return carlist;};
 	vector<Customer> getCustomerlist(){return customerData;};
 	Customer& findUser(string name);
