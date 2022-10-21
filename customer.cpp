@@ -48,3 +48,7 @@ void Customer::addCart(int carId){
 }
 
 int Customer::getCarCount() { return car_count; }
+
+void Customer::setMyCarList(Car paid_car){
+  this->my_car_list.push_back(paid_car);
+}
