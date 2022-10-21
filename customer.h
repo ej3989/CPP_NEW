@@ -17,6 +17,7 @@ private:
   string address;
   vector<int> cart;
   vector<int> buying_list;
+  vector<Car> my_car_list;
   int car_count;
   int cart_count;
 public:
@@ -44,6 +45,8 @@ public:
   int getCartCount();
   void addBuyingList(int carId);
   int getCarCount();
+  void setMyCarList(Car paid_car);
+  vector<Car> getMyCarList(){ return this->my_car_list;}
 };
 
 #endif

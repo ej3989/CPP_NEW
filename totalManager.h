@@ -25,6 +25,7 @@ public:
 	vector<stockManageCar> getcarlist(){return carlist;};
 	vector<Customer> getCustomerlist(){return customerData;};
 	Customer& findUser(string name);
+	void buyCarUser(Customer & buyUser);
 };
 
 #endif
