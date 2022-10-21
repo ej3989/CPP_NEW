@@ -9,6 +9,7 @@
 #include <cstring>
 #include <termio.h>
 #include "cursorCon.h"
+#include <unistd.h>
 #define CR '\012'
 using namespace std;
 
@@ -93,6 +94,7 @@ int main(){
                 King.join();
                 break;
             case 4:
+                cout<<endl;
                 exit(0);
             default :
                 cout<<"잘못 입력하셨습니다"<<endl;
@@ -134,6 +136,7 @@ void brouse(int superFlag,totalManager& King,Customer & nowUser,struct termio tb
             continue;
         }
    if(ioctl(0, TCSETAF, &oldtbuf)==-1) {perror("ioctl"); exit(1);}
+   int ii=0;
    switch(number){
         case 1:
             for(auto G : carList){
@@ -141,7 +144,7 @@ void brouse(int superFlag,totalManager& King,Customer & nowUser,struct termio tb
                 cout<<endl;
                 cout<<"===========================================================================";
                 cout<<endl<<endl<<endl<<endl;
-                cout<<endl<<setw(11)<<left<<"Brand"<<setw(11)<<left<<"Engine"<<setw(11)<<left<<"carname"<<setw(11)<<left<<"Color"<<setw(11)<<left<<"Type"<<setw(11)<<left<<"Price"<<setw(11)<<left<<"Quantity"<<endl<<endl;
+                cout<<endl<<setw(11)<<left<<"Brand"<<setw(11)<<left<<"Engine"<<setw(11)<<left<<"carname"<<setw(11)<<left<<"Color"<<setw(11)<<left<<"Type"<<setw(11)<<left<<"Quantity"<<setw(11)<<left<<"Quantity"<<endl<<endl;
                 cout<<endl<<setw(11)<<left<<G.getBrand()<<setw(11)<<left<<G.getEngine()<<setw(11)<<left<<G.getCarName()<<setw(11)<<left<<G.getColor()<<setw(11)<<left<<G.getType()<<setw(11)<<left<<G.getSale()<<setw(11)<<left<<G.getQuantity()<<endl<<endl;
                 cout<<endl<<endl<<endl<<endl;
                 cout<<"==========================================================================="<<endl;
@@ -169,11 +172,35 @@ void brouse(int superFlag,totalManager& King,Customer & nowUser,struct termio tb
             break;
         case 2:
             //탑리스트 stock 소환하기 필요
-           cout<<endl<<setw(30)<<left<<"브랜드"<<setw(30)<<left<<"엔진"<<setw(30)<<left<<"차량이름"<<setw(30)<<left<<"색상"<<setw(30)<<left<<"타입"<<setw(30)<<left<<"가격"<<endl<<endl;
-            //stockMangagerCar 리스트 소환하기.
+           cout<<endl<<setw(30)<<left<<"Brand"<<setw(30)<<left<<"Engine"<<setw(30)<<left<<"Car Name"<<setw(30)<<left<<"Color"<<setw(30)<<left<<"Type"<<setw(30)<<left<<"Price"<<endl<<endl;
+            King.printTop5();
+            sleep(5);
             break;
         case 3:
             if(ioctl(0, TCSETAF, &oldtbuf)==-1) {perror("ioctl"); exit(1);}
+            cout<<endl<<"[ n ]"<<setw(11)<<left<<"Brand"<<setw(11)<<left<<"Engine"<<setw(11)<<left<<"carname"<<setw(11)<<left<<"Color"<<setw(11)<<left<<"Type"<<setw(11)<<left<<"Price"<<setw(11)<<left<<"Quantity"<<endl<<endl;
+            for(auto ID: nowUser.getCart()){
+                ii++;
+                for(auto G: carList){
+                if(G.getCarId()==ID)
+                    cout<<"["<<ii<<"]:"<<setw(11)<<left<<G.getBrand()<<setw(11)<<left<<G.getEngine()<<setw(11)<<left<<G.getCarName()<<setw(11)<<left<<G.getColor()<<setw(11)<<left<<G.getType()<<setw(11)<<left<<G.getSale()<<setw(11)<<left<<G.getQuantity()<<endl<<endl;
+                }
+            }
+            cout<<endl<<"몇번을 구매하시겠습니까?"<<endl;
+            X:
+            int finalNumber;
+            char error;
+            try{
+            cin>>finalNumber;
+            if(cin.fail()) throw error;
+            }
+            catch(char x){
+            cout<<"오타발생"<<endl;
+            cin.clear();
+            cin.ignore();
+            goto X;
+            }
+            
             //장바구니 리스트 확인
             // 몇번 구매하시겠습니다. 
             //카아이디 포문 찾고, 거기 퀀티티 감소시키는거
@@ -185,8 +212,8 @@ void brouse(int superFlag,totalManager& King,Customer & nowUser,struct termio tb
             if(ioctl(0, TCSETAF, &tbuf)==-1) {perror("ioctl"); exit(1);}
             cout<<"===========================================================================";
             cout<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl;
-            cout<<right<<setw(45)<<"구매차량의 브랜드를 선택하세요"<<endl;
-            cout<<right<<setw(45)<<"1.HKC     2.KIA       3.BENTZ"<<endl<<endl<<endl<<endl<<endl<<endl<<endl;
+            cout<<right<<setw(45)<<"Choose your Brand"<<endl;
+            cout<<right<<setw(49)<<"1.HKC     2.KIA       3.BENTZ"<<endl<<endl<<endl<<endl<<endl<<endl<<endl;
             cout<<"===========================================================================";
             int choiceBrand;
             cin>>choiceBrand;
@@ -194,8 +221,8 @@ void brouse(int superFlag,totalManager& King,Customer & nowUser,struct termio tb
             nclear();
             cout<<"===========================================================================";
             cout<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl;
-            cout<<right<<setw(45)<<"고객의 위치를 입력해주세요"<<endl;
-            cout<<right<<setw(45)<<"(ex : 34 28)"<<endl<<endl<<endl<<endl<<endl<<endl<<endl;
+            cout<<right<<setw(65)<<"Enter the customer's location"<<endl;
+            cout<<right<<setw(55)<<"(ex : 34 28)"<<endl<<endl<<endl<<endl<<endl<<endl<<endl;
             cout<<"==========================================================================="<<endl;
             int xPos,yPos;
             cin>>xPos>>yPos;

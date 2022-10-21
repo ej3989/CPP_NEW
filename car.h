@@ -24,9 +24,8 @@ public:
         this->color = color;
         this->type =type;
         this->price = price;
-        srand(time(NULL));
         carId = rand()%100000000;
-        if(brand == "HMC"||brand =="hmc"||brand=="hyundai"||brand =="현대"){
+        if(brand == "HMC"||brand =="hmc"||brand=="hyundai"||brand =="HYUNDAI"){
             asLocation.push_back(make_pair(68,48));
             asLocation.push_back(make_pair(71,97));
             asLocation.push_back(make_pair(53,67));
