@@ -5,7 +5,7 @@
 #include <termio.h>
 #include <iomanip>
 #include <unistd.h>
-
+#include "cursorCon.h"
 void totalManager::loadCar(){
 
 
@@ -142,25 +142,82 @@ void totalManager::saveHuman(){
 
 	// 필요가 없음...
 }
-void totalManager::printCarList(){
-	//	for( auto out_data : carlist){
-	//		cout << out_data.getBrand() << out_data.getCarId() << endl;
-	//	}	
-	//	cout<<endl<<setw(30)<<left<<"브랜드"<<setw(30)<<left<<"엔진"<<setw(30)<<left<<"차량이름"<<setw(30)<<left<<"색상"<<setw(30)<<left<<"타입"<<setw(30)<<left<<"가격"<<setw(30)<<left<<
-	//		"재고 수량"<<setw(30)<<left<<"판매수량"<<endl<<endl;
-	cout<<endl<<setw(25)<<left<<"Brand"<<setw(25)<<left<<"Engine"<<setw(25)<<left<<"carname"<<setw(25)<<left<<"Color"<<setw(25)<<left<<"Type"<<setw(25)<<left<<"Price"<<setw(25)<<left<<"Quantity"<<setw(25)<<left<<"slaeQuan"<<endl<<endl;
-	for(auto carTemp: carlist){	
-		cout<<endl<<setw(25)<<left<<carTemp.getBrand()<<setw(25)<<left<<carTemp.getEngine()<<setw(25)
-			<<left<<carTemp.getCarName()<<setw(25)<<left<<carTemp.getColor()<<setw(25)<<left<<carTemp.getType()
-			<<setw(25)<<left<<carTemp.getPrice()<<setw(25)<<left<<carTemp.getQuantity()<<setw(25)<<left<<carTemp.getSaleQuan()<<endl;
-		/////cout<<endl<<setw(30)<<left<<carlist[i].getBrand()<<setw(30)<<left<<carlist[i].getEngine()
-		//<<setw(30)<<left<<carlist[i].getCarName()<<setw(30)<<left<<carlist[i].getColor()<<setw(30)<<left
-		//<<carlist[i].getType()<<setw(30)<<left<<carlist[i].getSaleQuan()<<endl<<endl;
-	}
-	getchar();
-	getchar();
+
+void totalManager::printCarList() {
+  //	for( auto out_data : carlist){
+  //		cout << out_data.getBrand() << out_data.getCarId() << endl;
+  //	}
+  while (1) {
+    nclear();
+    cout << "=================================================================="
+            "========="
+         << endl;
+    int ii = 0;
+    // cout<<endl<<setw(30)<<left<<"브랜드"<<setw(30)<<left<<"엔진"<<setw(30)<<left<<"차량이름"<<setw(30)<<left<<"색상"<<setw(30)<<left<<"타입"<<setw(30)<<left<<"가격"<<setw(30)<<left<<
+    // 	"재고 수량"<<setw(30)<<left<<"판매수량"<<endl<<endl;
+    cout << endl
+         << setw(11) << left << "[n]:Brand" << setw(11) << left << "Engine"
+         << setw(11) << left << "carname" << setw(11) << left << "Color"
+         << setw(11) << left << "Type" << setw(11) << left << "Price"
+         << setw(11) << left << "Quantity" << setw(11) << left << "slaeQuan"
+         << endl
+         << endl;
+
+    for (auto carTemp : carlist) {
+      ii++;
+      cout << "[" << ii << "]:" << setw(11) << left << carTemp.getBrand()
+           << setw(11) << left << carTemp.getEngine() << setw(11) << left
+           << carTemp.getCarName() << setw(11) << left << carTemp.getColor()
+           << setw(11) << left << carTemp.getType() << setw(11) << left
+           << carTemp.getPrice() << setw(11) << left << carTemp.getQuantity()
+           << setw(11) << left << carTemp.getSaleQuan() << endl
+           << endl;
+    }
+    int choice_num, modi_qty;
+    char purchaseChoice;
+  M:
+    cout << endl << "1) 차량정보를 수정하시겠습니까? [Y/N] >> ";
+    cin >> purchaseChoice;
+
+    if (purchaseChoice == 'y' || purchaseChoice == 'Y') {
+      cout << "2) 몇번 차량을 수정하시겠습니까? >> ";
+      while (1) {
+        cin >> choice_num;
+        if (choice_num > carlist.size())
+          cout << "잘못된 선택입니다! 재선택 >> ";
+        else
+          break;
+      }
+      cout << "3) 수량 변경 (증가 : x / 감소 : -x) >> ";
+      cin >> modi_qty;
+      if (modi_qty > 0) {
+        cout << "해당 차량의 수량이 증가됩니다. "
+             << carlist[choice_num - 1].getQuantity() << " ▶  "
+             << carlist[choice_num - 1].getQuantity() + modi_qty << endl;
+        carlist[choice_num - 1].quantityIncreasing(modi_qty);
+        sleep(1);
+        
+      } else if (modi_qty < 0) {
+        carlist[choice_num - 1].quantityDecreasing(modi_qty * -1);
+        cout << "해당 차량의 수량이 감소됩니다. "
+             << carlist[choice_num - 1].getQuantity() << " ▶  "
+             << carlist[choice_num - 1].getQuantity() - modi_qty << endl;
+        sleep(1);
+      }
+
+    } else if (purchaseChoice == 'n' || purchaseChoice == 'N')
+      goto exit;
+
+    else {
+      cout << "잘못 누르셨습니다" << endl;
+      goto M;
+    }
+  }
+  exit:
+  getchar();
 
 }
+
 void totalManager::printHuman(){
 
 }
