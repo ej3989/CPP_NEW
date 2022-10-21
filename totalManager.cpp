@@ -96,10 +96,10 @@ bool totalManager::buyCarUser(Customer & buyUser){
 			tempcar.push_back(G);
 		}
 	}
-    cout<<"==========================================================================="<<endl;
-	cout <<"                         "<<buyUser.getName()<<"  보유 차량"<<endl;
+//    cout<<"==========================================================================="<<endl;
+//	cout <<"                         "<<buyUser.getName()<<"  보유 차량"<<endl;
 	buyUser.getMyCarList(); 
-    cout<<"==========================================================================="<<endl;
+//    cout<<"==========================================================================="<<endl;
 	cout<<endl<<"몇번을 구매하시겠습니까?(exit: 0)"<<endl;
 	//cout << nowUser.getName() << " " << nowUser.getPhone() << endl;
 X:
@@ -270,7 +270,7 @@ while (1) {
     int choice_num, modi_qty;
     char purchaseChoice;
   M:
-    cout << endl << "1) 고객정보를 수정하시겠습니까? [Y/N] >> ";
+  cout << endl << "1) 고객정보를 수정하시겠습니까? [Y/N] >> ";
     cin >> purchaseChoice;
 
     if (purchaseChoice == 'y' || purchaseChoice == 'Y') {
