@@ -98,6 +98,14 @@ X:
 		cin.ignore();
 		goto X;
 	}
+	if(tempcar[finalNumber-1].getQuantity() == 0){
+		cout<<tempcar[finalNumber-1].getCarName() << "재고가 없습니다.  구매 하실 수 없습니다. " << endl;
+		getchar();
+		getchar();
+
+		return;
+		
+	}
 	buyUser.setMyCarList(tempcar[finalNumber-1]);
 	//tempcar[finalNumber-1].quantityDecreasing(-1);
 	auto tmp_id = tempcar[finalNumber-1].getCarId();
