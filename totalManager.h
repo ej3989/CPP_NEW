@@ -24,8 +24,8 @@ public:
 	void printTop5();
 	vector<stockManageCar> getcarlist(){return carlist;};
 	vector<Customer> getCustomerlist(){return customerData;};
-	Customer& findUser(string name);
-	void buyCarUser(Customer & buyUser);
+	Customer* findUser(string name);
+	bool buyCarUser(Customer & buyUser);
 };
 
 #endif
