@@ -171,7 +171,7 @@ void brouse(int superFlag,totalManager& King,Customer & nowUser,struct termio tb
             
             break;
         case 2:
-            //탑리스트 stock 소환하기 필요
+
 
            cout<<endl<<setw(30)<<left<<"Brand"<<setw(30)<<left<<"Engine"<<setw(30)<<left<<"Car Name"<<setw(30)<<left<<"Color"<<setw(30)<<left<<"Type"<<setw(30)<<left<<"Price"<<endl<<endl;
             King.printTop5();
@@ -213,32 +213,37 @@ void brouse(int superFlag,totalManager& King,Customer & nowUser,struct termio tb
             if(ioctl(0, TCSETAF, &tbuf)==-1) {perror("ioctl"); exit(1);}
             cout<<"===========================================================================";
             cout<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl;
-            cout<<right<<setw(35)<<"Choose your Brand"<<endl;
-            cout<<right<<setw(35)<<"1.HKC     2.KIA       3.BENTZ"<<endl<<endl<<endl<<endl<<endl<<endl<<endl;
+            cout<<right<<setw(44)<<"Choose your Brand"<<endl;
+            cout<<right<<setw(46)<<"1.HKC  2.KIA  3.BENTZ"<<endl<<endl<<endl<<endl<<endl<<endl<<endl;
             cout<<"===========================================================================";
             int choiceBrand;
             cin>>choiceBrand;
             if(ioctl(0, TCSETAF, &oldtbuf)==-1) {perror("ioctl"); exit(1);}
             nclear();
+            XX:
             cout<<"===========================================================================";
             cout<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl;
-            cout<<right<<setw(35)<<"Enter the customer's location"<<endl;
-            cout<<right<<setw(35)<<"(ex : 34 28)"<<endl<<endl<<endl<<endl<<endl<<endl<<endl;
+            cout<<right<<setw(52)<<"Enter the customer's location"<<endl;
+            cout<<right<<setw(52)<<"(MAX : 29 69)"<<endl<<endl<<endl<<endl<<endl<<endl<<endl;
             cout<<"==========================================================================="<<endl;
             int xPos,yPos;
             cin>>xPos>>yPos;
-            if(ioctl(0, TCSETAF, &tbuf)==-1) {perror("ioctl"); exit(1);}
+            if(xPos>30 || yPos>70){cout<<"잘못입력하셨습니다"<<endl; goto XX;}
+            nclear();
             if(choiceBrand==1){
                 customerCar A("HYUNDAI");
                 A.findAs(xPos,yPos);
+                getchar();
             }
             else if(choiceBrand==2){
                 customerCar A("KIA");
                 A.findAs(xPos,yPos);
+                getchar();
             }
             else if(choiceBrand==3){
                 customerCar A("BENTZ");
                 A.findAs(xPos,yPos);
+                getchar();
             }
             else{ cout<<"잘못고르셨습니다"<<endl;}
             break;
