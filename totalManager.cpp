@@ -86,7 +86,7 @@ bool totalManager::buyCarUser(Customer & buyUser){
 	nclear();
 	int ii = 0;
 	vector<stockManageCar> tempcar;
-    cout<<"===========================================================================";
+	cout<<"===========================================================================";
 	cout<<endl<<"[ n ]"<<setw(11)<<left<<"Brand"<<setw(11)<<left<<"Engine"<<setw(11)<<left<<"carname"<<setw(11)<<left<<"Color"<<setw(11)<<left<<"Type"<<setw(11)<<left<<"Price"<<setw(11)<<left<<"Quantity"<<endl<<endl;
 	for(auto ID: buyUser.getCart()){
 		ii++;
