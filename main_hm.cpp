@@ -59,7 +59,7 @@ int main(){
         }
         if(ioctl(0, TCSETAF, &oldtbuf)==-1) {perror("ioctl"); exit(1);}
         string tempID, tempPW;
-        Customer nowUser;
+       Customer nowUser;
         //vector<stockManageCar> carList = King.getcarlist(); //리스트 대입
         char ch;
         string A="";
@@ -178,30 +178,8 @@ void brouse(int superFlag,totalManager& King,Customer & nowUser,struct termio tb
 
             break;
         case 3:
-            if(ioctl(0, TCSETAF, &oldtbuf)==-1) {perror("ioctl"); exit(1);}
-            cout<<endl<<"[ n ]"<<setw(11)<<left<<"Brand"<<setw(11)<<left<<"Engine"<<setw(11)<<left<<"carname"<<setw(11)<<left<<"Color"<<setw(11)<<left<<"Type"<<setw(11)<<left<<"Price"<<setw(11)<<left<<"Quantity"<<endl<<endl;
-            for(auto ID: nowUser.getCart()){
-                ii++;
-                for(auto G: King.getcarlist()){
-                if(G.getCarId()==ID)
-                    cout<<"["<<ii<<"]:"<<setw(11)<<left<<G.getBrand()<<setw(11)<<left<<G.getEngine()<<setw(11)<<left<<G.getCarName()<<setw(11)<<left<<G.getColor()<<setw(11)<<left<<G.getType()<<setw(11)<<left<<G.getSale()<<setw(11)<<left<<G.getQuantity()<<endl<<endl;
-                }
-            }
-            cout<<endl<<"몇번을 구매하시겠습니까?"<<endl;
-            X:
-            int finalNumber;
-            char error;
-            try{
-            cin>>finalNumber;
-            if(cin.fail()) throw error;
-            }
-            catch(char x){
-            cout<<"오타발생"<<endl;
-            cin.clear();
-            cin.ignore();
-            goto X;
-            }
-            
+			King.buyCarUser(nowUser);
+                        
             //장바구니 리스트 확인
             // 몇번 구매하시겠습니다. 
             //카아이디 포문 찾고, 거기 퀀티티 감소시키는거
