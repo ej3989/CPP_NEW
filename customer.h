@@ -50,7 +50,7 @@ public:
   int getCarCount();
   void setMyCarList(Car paid_car);
   vector<Car> getMyCarList() {
-    int ii;
+    int ii=0;
     for (auto g : this->my_car_list) {
       ii++;
       cout << "[" << ii << "]:" << setw(11) << left << g.getBrand() << setw(11)
@@ -61,9 +61,9 @@ public:
       // cout << g.getBrand() << g.getCarName() << g.getEngine() <<
       // g.getType() << g.getColor() << g.getCarId() <<endl;}
 
-      return this->my_car_list;
     }
-    }
-  };
+
+  return this->my_car_list;
+};
 
 #endif
