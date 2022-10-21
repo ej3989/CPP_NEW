@@ -107,7 +107,7 @@ X:
 		if(G.getCarId()==tmp_id){
 			carlist[i].quantityDecreasing(1);
 			carlist[i].saleIncreasing(1);
-			cout<<carlist[i].getCarName() << "을 구매 하셨습니다." << endl;
+			cout<<carlist[i].getCarName() << "을 구매 하셨습니다." << endl<<endl;
 			//cout<<"quan test:" << G.getQuantity() << endl;
 			break;
 		}
