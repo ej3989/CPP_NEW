@@ -97,7 +97,7 @@ void BFS(int x, int y,int(*visit)[70], int(*check)[70], int (*map)[70],vector<pa
 
             }
             getchar(); getchar();
-            nclear();
+            gotoxy(0,0);
             for(int i=0;i<30;i++){
                 for(int j=0;j<70;j++){
                     if(i==0&&j==0)cout<<endl;
