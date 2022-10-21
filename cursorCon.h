@@ -11,3 +11,5 @@
 #define resetraw()  system("stty -raw -istrip sane")
 // 화면 지우기
 #define nclear()     system("clear")
+#define COLOR_RED	"\033[38;2;255;0;0m"
+#define COLOR_RESET	"\033[0m"
