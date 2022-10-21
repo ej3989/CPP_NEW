@@ -232,6 +232,7 @@ void totalManager::printCarList() {
 }
 
 void totalManager::printHuman(){
+  string checker;
 while (1) {
   N:
     nclear();
@@ -263,27 +264,31 @@ while (1) {
           break;
       }
       cout << "3) 무엇을 수정하시겠습니까?" << endl;
-      cout << "   1 : Name " << endl;
-      cout << "   2 : Phone Number " << endl;
-      cout << "   3 : ID " << endl;
-      cout << "   4 : Address " << endl;
-      cout << "   5 : Account 삭제" << endl;
-      cout << "   0 : 수정 취소" << endl;
-      cout << "  원하는 항목을 선택하세요 >> ";
+      cout << "    Name -------------> 1 " << endl;
+      cout << "    Phone Number -----> 2 " << endl;
+      cout << "    ID ---------------> 3 " << endl;
+      cout << "    Address ----------> 4 " << endl;
+      cout << "    Account Delete ---> 5" << endl;
+      cout << endl;
+      cout << "    Cancle All -------> 0 " << endl;
+      cout << "    Input Option -----> ";
       cin >> modi_qty;
       if (modi_qty == 1) {
         string new_;
         cout << "해당 고객의 이름이 변경됩니다. " << endl;
         cout << "New Name >> ";
         cin >> new_;
+        cout << "성공적으로 변경되었습니다. ! " << customerData[choice_num-1].getName() << " ▶  " << new_ << endl;
         customerData[choice_num-1].setName(new_);        
-        sleep(1);
+        cout << endl;
+        sleep(2);
       } 
       else if (modi_qty == 2){
         string new_;
         cout << "해당 고객의 전화번호가 변경됩니다. " << endl;
         cout << "New Phone number >> ";
         cin >> new_;
+        cout << "성공적으로 변경되었습니다. ! " << customerData[choice_num-1].getPhone() << " ▶  " << new_ << endl;
         customerData[choice_num-1].setPhonenum(new_);        
         sleep(1);
       }
@@ -292,6 +297,7 @@ while (1) {
         cout << "해당 고객의 ID 변경됩니다. " << endl;
         cout << "New ID >> ";
         cin >> new_;
+        cout << "성공적으로 변경되었습니다. ! " << customerData[choice_num-1].getId() << " ▶  " << new_ << endl;
         customerData[choice_num-1].setID(new_);        
         sleep(1);
       }
@@ -300,6 +306,7 @@ while (1) {
         cout << "해당 고객의 Address가 변경됩니다. " << endl;
         cout << "New Address >> ";
         cin >> new_;
+        cout << "성공적으로 변경되었습니다. ! " << customerData[choice_num-1].getAddress() << " ▶  " << new_ << endl;
         customerData[choice_num-1].setAddress(new_);        
         sleep(1);
       }
@@ -310,9 +317,24 @@ while (1) {
           cout << "수정 정보는 초기화 됩니다......" << endl;
           sleep (3);
           goto N;
+        } else
+        {
+          cout << "정말로 삭제하시겠습니까? (되돌릴수 없습니다.) [Y/N] >> ";
+          cin >> checker;
+          if (checker == "y" || checker == "Y")
+          {
+            cout << "성공적으로 삭제되었습니다. ! " << endl;
+            customerData.erase(customerData.begin() + choice_num - 1);
+            sleep(2);
+          }
+
+          else
+          {
+            cout << "수정사항이 취소됩니다. " << endl;
+            sleep(2);
+            goto N;
+          }
         }
-        else
-          customerData.erase(customerData.begin() + choice_num-1);
       }
       else if (modi_qty == 0){
          goto exit;
