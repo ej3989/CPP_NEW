@@ -156,7 +156,7 @@ void totalManager::printCarList() {
   while (1) {
     nclear();
     cout << "=================================================================="
-            "========="
+            "==================="
          << endl;
     int ii = 0;
     // cout<<endl<<setw(30)<<left<<"브랜드"<<setw(30)<<left<<"엔진"<<setw(30)<<left<<"차량이름"<<setw(30)<<left<<"색상"<<setw(30)<<left<<"타입"<<setw(30)<<left<<"가격"<<setw(30)<<left<<
@@ -203,13 +203,11 @@ void totalManager::printCarList() {
         carlist[choice_num - 1].quantityIncreasing(modi_qty);
         sleep(1);
         
-      } else if (modi_qty < 0 && ((carlist[choice_num-1].getQuantity() + modi_qty) > 0)) {
-        
-        
-        carlist[choice_num - 1].quantityDecreasing(modi_qty * -1);
+      } else if (modi_qty < 0 && ((carlist[choice_num-1].getQuantity() + modi_qty) >= 0)) {
         cout << "해당 차량의 수량이 감소됩니다. "
              << carlist[choice_num - 1].getQuantity() << " ▶  "
              << carlist[choice_num - 1].getQuantity() + modi_qty << endl;
+            carlist[choice_num - 1].quantityDecreasing(modi_qty * -1);
         sleep(1);
       }
 
@@ -234,82 +232,98 @@ void totalManager::printCarList() {
 }
 
 void totalManager::printHuman(){
-// while (1) {
-//     nclear();
-//     cout << "=================================================================="
-//             "========="
-//          << endl;
-//     int ii = 0;
-//     cout << endl
-//          << setw(11) << left << "[n]:Name" << setw(11) << left << "Phone Number"
-//          << setw(11) << left << "ID" << setw(11) << left << "PASSWD"
-//          << setw(11) << left << "ADDRESS" << setw(11) << left << "CAR LIST"
-//          << endl
-//          << endl;
-
-//     for (auto CustomerTemp : customerData) {
-//       ii++;
-//       cout << "[" << ii << "]:" << setw(11) << left << CustomerTemp.getName()
-//            << setw(11) << left << CustomerTemp.getEngine() << setw(11) << left
-//            << CustomerTemp.getCarName() << setw(11) << left << CustomerTemp.getColor()
-//            << setw(11) << left << carTemp.getType() << setw(11) << left
-//            << carTemp.getPrice() << setw(11) << left << carTemp.getQuantity()
-//            << setw(11) << left << carTemp.getSaleQuan() << endl
-//            << endl;
-//     }
-//     int choice_num, modi_qty;
-//     char purchaseChoice;
-//   M:
-//     cout << endl << "1) 차량정보를 수정하시겠습니까? [Y/N] >> ";
-//     cin >> purchaseChoice;
-
-//     if (purchaseChoice == 'y' || purchaseChoice == 'Y') {
-//       cout << "2) 몇번 차량을 수정하시겠습니까? >> ";
-//       while (1) {
-//         cin >> choice_num;
-//         if (choice_num > carlist.size())
-//           cout << "잘못된 선택입니다! 재선택 >> ";
-//         else
-//           break;
-//       }
-//       cout << "3) 수량 변경 (증가 : x / 감소 : -x) >> ";
-//       cin >> modi_qty;
-//       if (modi_qty > 0) {
-//         cout << "해당 차량의 수량이 증가됩니다. "
-//              << carlist[choice_num - 1].getQuantity() << " ▶  "
-//              << carlist[choice_num - 1].getQuantity() + modi_qty << endl;
-//         carlist[choice_num - 1].quantityIncreasing(modi_qty);
-//         sleep(1);
+while (1) {
+  N:
+    nclear();
+    cout << "=================================================================="
+            "========="
+         << endl;
+    int ii = 0;
+    cout << endl
+         << setw(11) << left << "[n]:Name" << setw(20) << left << "Phone Number" << setw(11) << left << "ID" << setw(11) << left << "ADDRESS" << endl;
         
-//       } else if (modi_qty < 0 && ((carlist[choice_num-1].getQuantity() + modi_qty) > 0)) {
-        
-        
-//         carlist[choice_num - 1].quantityDecreasing(modi_qty * -1);
-//         cout << "해당 차량의 수량이 감소됩니다. "
-//              << carlist[choice_num - 1].getQuantity() << " ▶  "
-//              << carlist[choice_num - 1].getQuantity() + modi_qty << endl;
-//         sleep(1);
-//       }
+    for (auto CustomerTemp : customerData) {
+      ii++;
+      cout << "[" << ii << "]:" << setw(11) << left << CustomerTemp.getName() << setw(15) << left << CustomerTemp.getPhone() << setw(11) << left << CustomerTemp.getId() << setw(11) << left << CustomerTemp.getAddress()
+           << endl;
+    }
+    int choice_num, modi_qty;
+    char purchaseChoice;
+  M:
+    cout << endl << "1) 고객정보를 수정하시겠습니까? [Y/N] >> ";
+    cin >> purchaseChoice;
 
-//       else if (modi_qty < 0 && ((carlist[choice_num-1].getQuantity() + modi_qty) < 0)) {
-        
-//         cout << " ERROR! : 수량이 0 보다 작습니다. " <<endl;
-//         cout << " 수정내용이 초기화 됩니다........ " <<endl;
-//         sleep(2);
-//       }
-
-//     } else if (purchaseChoice == 'n' || purchaseChoice == 'N')
-//       goto exit;
-
-//     else {
-//       cout << "잘못 누르셨습니다" << endl;
-//       goto M;
-//     }
-//   }
-//   exit:
-//   getchar();
-
-
+    if (purchaseChoice == 'y' || purchaseChoice == 'Y') {
+      cout << "2) 몇번 사람을 수정하시겠습니까? >> ";
+      while (1) {
+        cin >> choice_num;
+        if (choice_num > customerData.size())
+          cout << "잘못된 선택입니다! 재선택 >> ";
+        else
+          break;
+      }
+      cout << "3) 무엇을 수정하시겠습니까?" << endl;
+      cout << "   1 : Name " << endl;
+      cout << "   2 : Phone Number " << endl;
+      cout << "   3 : ID " << endl;
+      cout << "   4 : Address " << endl;
+      cout << "   5 : Account 삭제" << endl;
+      cout << "   0 : 수정 취소" << endl;
+      cout << "  원하는 항목을 선택하세요 >> ";
+      cin >> modi_qty;
+      if (modi_qty == 1) {
+        string new_;
+        cout << "해당 고객의 이름이 변경됩니다. " << endl;
+        cout << "New Name >> ";
+        cin >> new_;
+        customerData[choice_num-1].setName(new_);        
+        sleep(1);
+      } 
+      else if (modi_qty == 2){
+        string new_;
+        cout << "해당 고객의 전화번호가 변경됩니다. " << endl;
+        cout << "New Phone number >> ";
+        cin >> new_;
+        customerData[choice_num-1].setPhonenum(new_);        
+        sleep(1);
+      }
+      else if (modi_qty == 3){
+        string new_;
+        cout << "해당 고객의 ID 변경됩니다. " << endl;
+        cout << "New ID >> ";
+        cin >> new_;
+        customerData[choice_num-1].setID(new_);        
+        sleep(1);
+      }
+      else if (modi_qty == 4){
+        string new_;
+        cout << "해당 고객의 Address가 변경됩니다. " << endl;
+        cout << "New Address >> ";
+        cin >> new_;
+        customerData[choice_num-1].setAddress(new_);        
+        sleep(1);
+      }
+      else if (modi_qty == 5){
+        if(customerData[choice_num-1].getName() == "admin")
+        {
+          cout << "관리자 계정은 삭제할수 없습니다." << endl;
+          cout << "수정 정보는 초기화 됩니다......" << endl;
+          sleep (3);
+          goto N;
+        }
+        else
+          customerData.erase(customerData.begin() + choice_num-1);
+      }
+      else if (modi_qty == 0){
+         goto exit;
+      }
+      }
+      else if (purchaseChoice == 'N' || purchaseChoice == 'n'){
+        goto exit;
+      }
+}
+  exit:
+  getchar();
 }
 
 void totalManager::join(){
