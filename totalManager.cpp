@@ -59,21 +59,34 @@ void totalManager::printTop5(){
 	cin.get();
 	cin.get();
 }
-Customer& totalManager::findUser(string name){
+Customer* totalManager::findUser(string name){
 
 	auto it = find_if(customerData.begin(),customerData.end(),[name](Customer a)->bool{ return (a.getName() == name);});
 	if(it==customerData.end()){
 		cout << "사용자가 없습니다" << endl;
+		getchar();
+		getchar();
+		return 0;
+	}
+	for(Customer &find_User : customerData ){
+		if(find_User.getName() == name){
+			return &find_User;
+		}
+
 	}
 
-	return *it;
+
+	return 0;
 
 }
-void totalManager::buyCarUser(Customer & buyUser){
+
+bool totalManager::buyCarUser(Customer & buyUser){
 
 	//	if(ioctl(0, TCSETAF, &oldtbuf)==-1) {perror("ioctl"); exit(1);}
+	nclear();
 	int ii = 0;
 	vector<stockManageCar> tempcar;
+    cout<<"===========================================================================";
 	cout<<endl<<"[ n ]"<<setw(11)<<left<<"Brand"<<setw(11)<<left<<"Engine"<<setw(11)<<left<<"carname"<<setw(11)<<left<<"Color"<<setw(11)<<left<<"Type"<<setw(11)<<left<<"Price"<<setw(11)<<left<<"Quantity"<<endl<<endl;
 	for(auto ID: buyUser.getCart()){
 		ii++;
@@ -83,7 +96,11 @@ void totalManager::buyCarUser(Customer & buyUser){
 			tempcar.push_back(G);
 		}
 	}
-	cout<<endl<<"몇번을 구매하시겠습니까?"<<endl;
+    cout<<"==========================================================================="<<endl;
+	cout <<"                         "<<buyUser.getName()<<"  보유 차량"<<endl;
+	buyUser.getMyCarList(); 
+    cout<<"==========================================================================="<<endl;
+	cout<<endl<<"몇번을 구매하시겠습니까?(exit: 0)"<<endl;
 	//cout << nowUser.getName() << " " << nowUser.getPhone() << endl;
 X:
 	int finalNumber;
@@ -98,12 +115,14 @@ X:
 		cin.ignore();
 		goto X;
 	}
+	if(finalNumber == 0)
+		return false;
 	if(tempcar[finalNumber-1].getQuantity() == 0){
 		cout<<tempcar[finalNumber-1].getCarName() << "재고가 없습니다.  구매 하실 수 없습니다. " << endl;
 		getchar();
 		getchar();
 
-		return;
+		return true;
 		
 	}
 	buyUser.setMyCarList(tempcar[finalNumber-1]);
@@ -123,7 +142,6 @@ X:
 
 	}
 	
-	buyUser.getMyCarList();
 	//cout<<endl<<setw(25)<<left<<"Brand"<<setw(25)<<left<<"Engine"<<setw(25)<<left<<"carname"<<setw(25)<<left<<"Color"<<setw(25)<<left<<"Type"<<setw(25)<<left<<"Price"<<setw(25)<<left<<"Quantity"<<setw(25)<<left<<"slaeQuan"<<endl<<endl;
 	//for(auto carTemp: carlist){	
 	//	cout<<endl<<setw(25)<<left<<carTemp.getBrand()<<setw(25)<<left<<carTemp.getEngine()<<setw(25)
@@ -138,6 +156,7 @@ X:
 
 	getchar();
 	getchar();
+	return true;
 
 }
 void totalManager::saveCar(){

@@ -13,7 +13,7 @@
 #define CR '\012'
 using namespace std;
 
-void brouse(int superFlag,totalManager& King,Customer & nowUser,struct termio tbuf,struct termio oldtbufr,vector<stockManageCar> carList);
+void brouse(int superFlag,totalManager& King,Customer * nowUser,struct termio tbuf,struct termio oldtbufr,vector<stockManageCar> carList);
 int main(){
     totalManager King;
     King.loadCar();
@@ -59,7 +59,7 @@ int main(){
         }
         if(ioctl(0, TCSETAF, &oldtbuf)==-1) {perror("ioctl"); exit(1);}
         string tempID, tempPW;
-       Customer nowUser;
+       Customer* nowUser;
         //vector<stockManageCar> carList = King.getcarlist(); //리스트 대입
         char ch;
         string A="";
@@ -77,6 +77,10 @@ int main(){
                 gotoxy(9,35);
                 cin>>tempID;
                 nowUser= King.findUser(tempID);
+				if(nowUser == 0){
+					break;
+				}
+				//cout <<"poinrt now user test"<< nowUser->getName() << endl;
                 gotoxy(10,35);
                 if(ioctl(0, TCSETAF, &tbuf)==-1) {perror("ioctl"); exit(1);}
                 getchar();
@@ -86,9 +90,9 @@ int main(){
 
                 tempPW=A;
                 if(ioctl(0, TCSETAF, &oldtbuf)==-1) {perror("ioctl"); exit(1);}
-                if(nowUser.correct_psswd(tempID,tempPW)){
+                if(nowUser->correct_psswd(tempID,tempPW)){
                     nclear();
-                    brouse(nowUser.checkAdmin(),King,nowUser,tbuf,oldtbuf,King.getcarlist());
+                    brouse(nowUser->checkAdmin(),King,nowUser,tbuf,oldtbuf,King.getcarlist());
                 }
                 else cout<<"잘못 입력하셨습니다"<<endl;
                 break;
@@ -110,7 +114,7 @@ int main(){
     
 
 }
-void brouse(int superFlag,totalManager& King,Customer & nowUser,struct termio tbuf,struct termio oldtbuf,vector<stockManageCar> carList){
+void brouse(int superFlag,totalManager& King,Customer * nowUser,struct termio tbuf,struct termio oldtbuf,vector<stockManageCar> carList){
     while(1){
         nclear();
         if(ioctl(0, TCSETAF, &tbuf)==-1) {perror("ioctl"); exit(1);}
@@ -120,7 +124,7 @@ void brouse(int superFlag,totalManager& King,Customer & nowUser,struct termio tb
         cout<<setw(30)<<" "<<"2. Top 5"<<endl;
         cout<<setw(30)<<" "<<"3. 장바구니 목록"<<endl;
         cout<<setw(30)<<" "<<"4. 구매차량 AS위치 "<<endl;
-        if(nowUser.checkAdmin()){
+        if(nowUser->checkAdmin()){
             cout<<setw(30)<<" "<<"5. 차량 추가"<<endl;
             cout<<setw(30)<<" "<<"6. 재고관리"<<endl;
             cout<<setw(30)<<" "<<"7. 고객관리"<<endl;
@@ -162,7 +166,7 @@ void brouse(int superFlag,totalManager& King,Customer & nowUser,struct termio tb
                 switch(purchaseChoice){
                     case 'y':
                     case 'Y':
-                        nowUser.addCart(G.getCarId());
+                        nowUser->addCart(G.getCarId());
                         cout<<"장바구니에 넣으셨습니다"<<endl;
                         break;
                     case 'N':
@@ -185,7 +189,7 @@ void brouse(int superFlag,totalManager& King,Customer & nowUser,struct termio tb
             break;
         case 3:
       nclear();
-			King.buyCarUser(nowUser);
+			while(King.buyCarUser(*nowUser));
                         
             //장바구니 리스트 확인
             // 몇번 구매하시겠습니다. 
