@@ -68,6 +68,68 @@ Customer& totalManager::findUser(string name){
 	return *it;
 
 }
+void totalManager::buyCarUser(Customer & buyUser){
+	
+//	if(ioctl(0, TCSETAF, &oldtbuf)==-1) {perror("ioctl"); exit(1);}
+	int ii = 0;
+	vector<stockManageCar> tempcar;
+	cout<<endl<<"[ n ]"<<setw(11)<<left<<"Brand"<<setw(11)<<left<<"Engine"<<setw(11)<<left<<"carname"<<setw(11)<<left<<"Color"<<setw(11)<<left<<"Type"<<setw(11)<<left<<"Price"<<setw(11)<<left<<"Quantity"<<endl<<endl;
+	for(auto ID: buyUser.getCart()){
+		ii++;
+		for(auto G: this->getcarlist()){
+			if(G.getCarId()==ID)
+				cout<<"["<<ii<<"]:"<<setw(11)<<left<<G.getBrand()<<setw(11)<<left<<G.getEngine()<<setw(11)<<left<<G.getCarName()<<setw(11)<<left<<G.getColor()<<setw(11)<<left<<G.getType()<<setw(11)<<left<<G.getSale()<<setw(11)<<left<<G.getQuantity()<<endl<<endl;
+			tempcar.push_back(G);
+		}
+	}
+	cout<<endl<<"몇번을 구매하시겠습니까?"<<endl;
+	//cout << nowUser.getName() << " " << nowUser.getPhone() << endl;
+X:
+	int finalNumber;
+	char error;
+	try{
+		cin>>finalNumber;
+		if(cin.fail()) throw error;
+	}
+	catch(char x){
+		cout<<"오타발생"<<endl;
+		cin.clear();
+		cin.ignore();
+		goto X;
+	}
+	buyUser.setMyCarList(tempcar[finalNumber-1]);
+	//tempcar[finalNumber-1].quantityDecreasing(-1);
+	auto tmp_id = tempcar[finalNumber-1].getCarId();
+	int i=0;
+	for(auto G: this->getcarlist()){
+
+		if(G.getCarId()==tmp_id){
+			carlist[i].quantityDecreasing(1);
+			carlist[i].saleIncreasing(1);
+
+			//cout<<"quan test:" << G.getQuantity() << endl;
+			break;
+		}
+		i++;
+
+	}	
+	for(auto carTemp: carlist){	
+		cout<<endl<<setw(30)<<left<<carTemp.getBrand()<<setw(30)<<left<<carTemp.getEngine()<<setw(30)
+			<<left<<carTemp.getCarName()<<setw(30)<<left<<carTemp.getColor()<<setw(30)<<left<<carTemp.getType()
+			<<setw(30)<<left<<carTemp.getPrice()<<setw(30)<<left<<carTemp.getQuantity()<<setw(30)<<left<<carTemp.getSaleQuan()<<endl<<endl;
+		/////cout<<endl<<setw(30)<<left<<carlist[i].getBrand()<<setw(30)<<left<<carlist[i].getEngine()
+		//<<setw(30)<<left<<carlist[i].getCarName()<<setw(30)<<left<<carlist[i].getColor()<<setw(30)<<left
+		//<<carlist[i].getType()<<setw(30)<<left<<carlist[i].getSaleQuan()<<endl<<endl;
+	}
+
+//	for(auto temp : buyUser.getMyCarList()){
+//		cout<<"test" <<temp.getBrand()<< endl;
+//	}
+
+	getchar();
+	getchar();
+
+}
 void totalManager::saveCar(){
 	//필요가 없음 ...
 
@@ -77,11 +139,12 @@ void totalManager::saveHuman(){
 	// 필요가 없음...
 }
 void totalManager::printCarList(){
-//	for( auto out_data : carlist){
-//		cout << out_data.getBrand() << out_data.getCarId() << endl;
-//	}	
+	//	for( auto out_data : carlist){
+	//		cout << out_data.getBrand() << out_data.getCarId() << endl;
+	//	}	
 	cout<<endl<<setw(30)<<left<<"브랜드"<<setw(30)<<left<<"엔진"<<setw(30)<<left<<"차량이름"<<setw(30)<<left<<"색상"<<setw(30)<<left<<"타입"<<setw(30)<<left<<"가격"<<setw(30)<<left<<
 		"재고 수량"<<setw(30)<<left<<"판매수량"<<endl<<endl;
+	cout<<endl<<setw(11)<<left<<"Brand"<<setw(11)<<left<<"Engine"<<setw(11)<<left<<"carname"<<setw(11)<<left<<"Color"<<setw(11)<<left<<"Type"<<setw(11)<<left<<"Price"<<setw(11)<<left<<"Quantity"<<setw(11)<<left<<"slaeQuan"<<endl<<endl;
 	for(auto carTemp: carlist){	
 		cout<<endl<<setw(30)<<left<<carTemp.getBrand()<<setw(30)<<left<<carTemp.getEngine()<<setw(30)
 			<<left<<carTemp.getCarName()<<setw(30)<<left<<carTemp.getColor()<<setw(30)<<left<<carTemp.getType()
