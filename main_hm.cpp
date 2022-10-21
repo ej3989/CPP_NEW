@@ -172,8 +172,10 @@ void brouse(int superFlag,totalManager& King,Customer & nowUser,struct termio tb
             break;
         case 2:
             //탑리스트 stock 소환하기 필요
+
            cout<<endl<<setw(30)<<left<<"Brand"<<setw(30)<<left<<"Engine"<<setw(30)<<left<<"Car Name"<<setw(30)<<left<<"Color"<<setw(30)<<left<<"Type"<<setw(30)<<left<<"Price"<<endl<<endl;
             King.printTop5();
+
             break;
         case 3:
             if(ioctl(0, TCSETAF, &oldtbuf)==-1) {perror("ioctl"); exit(1);}
@@ -245,7 +247,9 @@ void brouse(int superFlag,totalManager& King,Customer & nowUser,struct termio tb
             King.addCarList();
             break;
         case 6:
+
             King.printCarList();
+
             break;
         case 9:
             if(ioctl(0, TCSETAF, &oldtbuf)==-1) {perror("ioctl"); exit(1);}
