@@ -67,12 +67,17 @@ int main(){
             case 1 :
             case 2 :
                 nclear();
+                cout<<"===========================================================================";
+                cout<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl;
+                cout<<"                             ID : "<<endl;
+                cout<<"                             PW : "<<endl;
+                cout<<endl<<endl<<endl<<endl<<endl<<endl<<endl;
+                cout<<"===========================================================================";
                 if(ioctl(0, TCSETAF, &oldtbuf)==-1) {perror("ioctl"); exit(1);}
-                cout<<endl;
-                cout<<"ID : ";
+                gotoxy(9,35);
                 cin>>tempID;
                 nowUser= King.findUser(tempID);
-                cout<<"PW : ";
+                gotoxy(10,35);
                 if(ioctl(0, TCSETAF, &tbuf)==-1) {perror("ioctl"); exit(1);}
                 getchar();
                 while(1){
@@ -121,7 +126,7 @@ void brouse(int superFlag,totalManager& King,Customer & nowUser,struct termio tb
         }
         else{cout<<endl<<endl;}
         cout<<setw(30)<<" "<<"9. 뒤로가기"<<endl;
-        cout<<endl<<endl<<endl<<endl;
+        cout<<endl<<endl<<endl<<endl<<endl;
    cout<<"===========================================================================";
    int number;
    char m;
@@ -146,9 +151,10 @@ void brouse(int superFlag,totalManager& King,Customer & nowUser,struct termio tb
                 cout<<endl<<endl<<endl<<endl;
                 cout<<endl<<setw(11)<<left<<"Brand"<<setw(11)<<left<<"Engine"<<setw(11)<<left<<"carname"<<setw(11)<<left<<"Color"<<setw(11)<<left<<"Type"<<setw(11)<<left<<"Quantity"<<setw(11)<<left<<"Quantity"<<endl<<endl;
                 cout<<endl<<setw(11)<<left<<G.getBrand()<<setw(11)<<left<<G.getEngine()<<setw(11)<<left<<G.getCarName()<<setw(11)<<left<<G.getColor()<<setw(11)<<left<<G.getType()<<setw(11)<<left<<G.getSale()<<setw(11)<<left<<G.getQuantity()<<endl<<endl;
-                cout<<endl<<endl<<endl<<endl;
+                cout<<endl<<endl<<endl<<endl<<endl<<endl;
                 cout<<"==========================================================================="<<endl;
                 M:
+                gotoxy(14,1);
                 cout<<"장바구니에 넣으시겠습니까?(y/n) : ";
                 char purchaseChoice;
                 cin>> purchaseChoice;
@@ -171,7 +177,7 @@ void brouse(int superFlag,totalManager& King,Customer & nowUser,struct termio tb
             
             break;
         case 2:
-
+            nclear();
 
            cout<<endl<<setw(30)<<left<<"Brand"<<setw(30)<<left<<"Engine"<<setw(30)<<left<<"Car Name"<<setw(30)<<left<<"Color"<<setw(30)<<left<<"Type"<<setw(30)<<left<<"Price"<<endl<<endl;
             King.printTop5();
@@ -179,7 +185,13 @@ void brouse(int superFlag,totalManager& King,Customer & nowUser,struct termio tb
             break;
         case 3:
             if(ioctl(0, TCSETAF, &oldtbuf)==-1) {perror("ioctl"); exit(1);}
+            nclear();
+            cout<<"===========================================================================";
+            cout<<endl;
             cout<<endl<<"[ n ]"<<setw(11)<<left<<"Brand"<<setw(11)<<left<<"Engine"<<setw(11)<<left<<"carname"<<setw(11)<<left<<"Color"<<setw(11)<<left<<"Type"<<setw(11)<<left<<"Price"<<setw(11)<<left<<"Quantity"<<endl<<endl;
+            cout<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl;
+            cout<<"==========================================================================="<<endl;
+            gotoxy(3,1);
             for(auto ID: nowUser.getCart()){
                 ii++;
                 for(auto G: King.getcarlist()){
@@ -187,6 +199,7 @@ void brouse(int superFlag,totalManager& King,Customer & nowUser,struct termio tb
                     cout<<"["<<ii<<"]:"<<setw(11)<<left<<G.getBrand()<<setw(11)<<left<<G.getEngine()<<setw(11)<<left<<G.getCarName()<<setw(11)<<left<<G.getColor()<<setw(11)<<left<<G.getType()<<setw(11)<<left<<G.getSale()<<setw(11)<<left<<G.getQuantity()<<endl<<endl;
                 }
             }
+            gotoxy(14,1);
             cout<<endl<<"몇번을 구매하시겠습니까?"<<endl;
             X:
             int finalNumber;
@@ -212,20 +225,21 @@ void brouse(int superFlag,totalManager& King,Customer & nowUser,struct termio tb
             nclear();
             if(ioctl(0, TCSETAF, &tbuf)==-1) {perror("ioctl"); exit(1);}
             cout<<"===========================================================================";
-            cout<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl;
+            cout<<endl<<endl<<endl<<endl<<endl<<endl<<endl;
             cout<<right<<setw(44)<<"Choose your Brand"<<endl;
-            cout<<right<<setw(46)<<"1.HKC  2.KIA  3.BENTZ"<<endl<<endl<<endl<<endl<<endl<<endl<<endl;
+            cout<<right<<setw(46)<<"1.HKC  2.KIA  3.BENTZ"<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl;
             cout<<"===========================================================================";
             int choiceBrand;
             cin>>choiceBrand;
             if(ioctl(0, TCSETAF, &oldtbuf)==-1) {perror("ioctl"); exit(1);}
-            nclear();
             XX:
+            nclear();
             cout<<"===========================================================================";
-            cout<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl;
+            cout<<endl<<endl<<endl<<endl<<endl<<endl<<endl;
             cout<<right<<setw(52)<<"Enter the customer's location"<<endl;
-            cout<<right<<setw(52)<<"(MAX : 29 69)"<<endl<<endl<<endl<<endl<<endl<<endl<<endl;
+            cout<<right<<setw(52)<<"(MAX : 29 69)"<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl;
             cout<<"==========================================================================="<<endl;
+            gotoxy(11,35);
             int xPos,yPos;
             cin>>xPos>>yPos;
             if(xPos>30 || yPos>70){cout<<"잘못입력하셨습니다"<<endl; goto XX;}
@@ -233,17 +247,14 @@ void brouse(int superFlag,totalManager& King,Customer & nowUser,struct termio tb
             if(choiceBrand==1){
                 customerCar A("HYUNDAI");
                 A.findAs(xPos,yPos);
-                getchar();
             }
             else if(choiceBrand==2){
                 customerCar A("KIA");
                 A.findAs(xPos,yPos);
-                getchar();
             }
             else if(choiceBrand==3){
                 customerCar A("BENTZ");
                 A.findAs(xPos,yPos);
-                getchar();
             }
             else{ cout<<"잘못고르셨습니다"<<endl;}
             break;
