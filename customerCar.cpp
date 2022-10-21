@@ -64,6 +64,11 @@ void BFS(int x, int y,int(*visit)[70], int(*check)[70], int (*map)[70],vector<pa
             MinY = G.second;
             }
     }
+    cout<<"===========================================================================";
+    cout<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl;
+    cout<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl;
+    cout<<"==========================================================================="<<endl;
+    gotoxy(3,1);
     if(MinLong ==100000) cout<<"기상악화로 아무곳도 갈수 없습니다"<<endl;
     //전부 도착 못할 시 기준 가정
     else {cout<<"("<<MinX<<","<<MinY<<") 로 가시면 총 "<<MinLong<<"km 걸립니다. "<<endl;
@@ -71,13 +76,37 @@ void BFS(int x, int y,int(*visit)[70], int(*check)[70], int (*map)[70],vector<pa
     cout<<"1을 누르시면 주행모드로 전환됩니다. :";
     cin>>a;
     nclear();
-    cout<<endl;
     switch(a){
         case 1:
+        
             for(int i=0;i<30;i++){
                 for(int j=0;j<70;j++){
                     if(i==0&&j==0)cout<<endl;
+                    int flag =0;
+                    for(auto V : asPosition){
+                        if(i==V.first&&j==V.second){printf("\033[0;33m★\033[0m"); flag =1; continue;}
+                    }
+                    if(flag==1)continue;
                     if(i==MinX&&j==MinY){printf("\033[0;31m★\033[0m"); continue;}
+                    if(i==originX && j==originY){printf("\033[0;34m★\033[0m"); continue;}
+                    if(map[i][j]==0) printf("\033[0;30mO\033[0m");
+                    else printf("\033[0;32mO\033[0m");
+                }
+
+                cout<<endl;
+
+            }
+            getchar(); getchar();
+            nclear();
+            for(int i=0;i<30;i++){
+                for(int j=0;j<70;j++){
+                    if(i==0&&j==0)cout<<endl;
+                    int flag =0;
+                    if(i==MinX&&j==MinY){printf("\033[0;31m★\033[0m"); continue;}
+                    for(auto V : asPosition){
+                        if(i==V.first&&j==V.second){printf("\033[0;33m★\033[0m"); flag =1; continue;}
+                    }
+                    if(flag==1)continue;
                     if(i==originX && j==originY){printf("\033[0;34m★\033[0m"); continue;}
                     if(map[i][j]==0) printf("\033[0;30mO\033[0m");
                     else printf("\033[0;32mO\033[0m");

@@ -46,31 +46,35 @@ void totalManager::loadHuman(){
 }
 
 void totalManager::printTop5(){
-	sort(carlist.begin(),carlist.end(),[](stockManageCar a, stockManageCar b)->bool{return (a.getSaleQuan()>b.getSaleQuan());});
+	auto temp_carlist = carlist;
+
+	sort(temp_carlist.begin(),temp_carlist.end(),[](stockManageCar a, stockManageCar b)->bool{return (a.getSaleQuan()>b.getSaleQuan());});
+
+	cout<<endl<<setw(30)<<left<<"Brand"<<setw(30)<<left<<"Engine"<<setw(30)<<left<<"Car Name"<<setw(30)<<left<<"Color"<<setw(30)<<left<<"Type"<<setw(30)<<left<<"Price"<<setw(30)<<left<<"Sales"<<endl<<endl;
 	for(int i=0;i<5 ; i ++){	
-           cout<<endl<<setw(30)<<left<<carlist[i].getBrand()<<setw(30)<<left<<carlist[i].getEngine()<<setw(30)
-			   <<left<<carlist[i].getCarName()<<setw(30)<<left<<carlist[i].getColor()<<setw(30)<<left
-			   <<carlist[i].getType()<<setw(30)<<left<<carlist[i].getPrice()<<endl<<endl;
-           /////cout<<endl<<setw(30)<<left<<carlist[i].getBrand()<<setw(30)<<left<<carlist[i].getEngine()
-		   //<<setw(30)<<left<<carlist[i].getCarName()<<setw(30)<<left<<carlist[i].getColor()<<setw(30)<<left
-		   //<<carlist[i].getType()<<setw(30)<<left<<carlist[i].getSaleQuan()<<endl<<endl;
+		cout<<endl<<setw(30)<<left<<temp_carlist[i].getBrand()<<setw(30)<<left<<temp_carlist[i].getEngine()<<setw(30)
+			<<left<<temp_carlist[i].getCarName()<<setw(30)<<left<<temp_carlist[i].getColor()<<setw(30)<<left
+			<<temp_carlist[i].getType()<<setw(30)<<left<<temp_carlist[i].getPrice()<<setw(30)<<left<<temp_carlist[i].getSaleQuan()<<endl;
+		/////cout<<endl<<setw(30)<<left<<temp_carlist[i].getBrand()<<setw(30)<<left<<temp_carlist[i].getEngine()
+		//<<setw(30)<<left<<temp_carlist[i].getCarName()<<setw(30)<<left<<temp_carlist[i].getColor()<<setw(30)<<left
+		//<<temp_carlist[i].getType()<<setw(30)<<left<<temp_carlist[i].getSaleQuan()<<endl<<endl;
 	}
 	cin.get();
 	cin.get();
 }
 Customer& totalManager::findUser(string name){
-	
+
 	auto it = find_if(customerData.begin(),customerData.end(),[name](Customer a)->bool{ return (a.getName() == name);});
 	if(it==customerData.end()){
 		cout << "사용자가 없습니다" << endl;
 	}
-		
+
 	return *it;
 
 }
 void totalManager::buyCarUser(Customer & buyUser){
-	
-//	if(ioctl(0, TCSETAF, &oldtbuf)==-1) {perror("ioctl"); exit(1);}
+
+	//	if(ioctl(0, TCSETAF, &oldtbuf)==-1) {perror("ioctl"); exit(1);}
 	int ii = 0;
 	vector<stockManageCar> tempcar;
 	cout<<endl<<"[ n ]"<<setw(11)<<left<<"Brand"<<setw(11)<<left<<"Engine"<<setw(11)<<left<<"carname"<<setw(11)<<left<<"Color"<<setw(11)<<left<<"Type"<<setw(11)<<left<<"Price"<<setw(11)<<left<<"Quantity"<<endl<<endl;
@@ -100,17 +104,17 @@ X:
 	buyUser.setMyCarList(tempcar[finalNumber-1]);
 	//tempcar[finalNumber-1].quantityDecreasing(-1);
 	auto tmp_id = tempcar[finalNumber-1].getCarId();
-	int i=0;
-	for(auto G: this->getcarlist()){
+	for(auto& G: carlist){
 
 		if(G.getCarId()==tmp_id){
-			carlist[i].quantityDecreasing(1);
-			carlist[i].saleIncreasing(1);
+			G.quantityDecreasing(1);
+			G.saleDecreasing(1);
+			//carlist[i].quantityDecreasing(1);
+			//carlist[i].saleIncreasing(1);
 
 			//cout<<"quan test:" << G.getQuantity() << endl;
 			break;
 		}
-		i++;
 
 	}	
 	for(auto carTemp: carlist){	
@@ -122,9 +126,9 @@ X:
 		//<<carlist[i].getType()<<setw(30)<<left<<carlist[i].getSaleQuan()<<endl<<endl;
 	}
 
-//	for(auto temp : buyUser.getMyCarList()){
-//		cout<<"test" <<temp.getBrand()<< endl;
-//	}
+	//	for(auto temp : buyUser.getMyCarList()){
+	//		cout<<"test" <<temp.getBrand()<< endl;
+	//	}
 
 	getchar();
 	getchar();
@@ -138,6 +142,7 @@ void totalManager::saveHuman(){
 
 	// 필요가 없음...
 }
+
 void totalManager::printCarList() {
   //	for( auto out_data : carlist){
   //		cout << out_data.getBrand() << out_data.getCarId() << endl;
@@ -210,6 +215,7 @@ void totalManager::printCarList() {
   }
   exit:
   getchar();
+
 }
 
 void totalManager::printHuman(){
