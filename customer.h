@@ -5,6 +5,9 @@
 #include <string>
 #include <vector>
 #include "car.h"
+#include "cursorCon.h"
+#include <iomanip>
+#include <unistd.h>
 using namespace std;
 
 class Customer {
@@ -46,7 +49,21 @@ public:
   void addBuyingList(int carId);
   int getCarCount();
   void setMyCarList(Car paid_car);
-  vector<Car> getMyCarList(){ return this->my_car_list;}
-};
+  vector<Car> getMyCarList() {
+    int ii;
+    for (auto g : this->my_car_list) {
+      ii++;
+      cout << "[" << ii << "]:" << setw(11) << left << g.getBrand() << setw(11)
+           << left << g.getCarName() << setw(11) << left << g.getEngine()
+           << setw(11) << left << g.getType() << setw(11) << left
+           << g.getColor() << setw(11) << left << g.getCarId() << endl;
+
+      // cout << g.getBrand() << g.getCarName() << g.getEngine() <<
+      // g.getType() << g.getColor() << g.getCarId() <<endl;}
+
+      return this->my_car_list;
+    }
+    }
+  };
 
 #endif
