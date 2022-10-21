@@ -217,6 +217,81 @@ exit:
 }
 
 void totalManager::printHuman(){
+// while (1) {
+//     nclear();
+//     cout << "=================================================================="
+//             "========="
+//          << endl;
+//     int ii = 0;
+//     cout << endl
+//          << setw(11) << left << "[n]:Name" << setw(11) << left << "Phone Number"
+//          << setw(11) << left << "ID" << setw(11) << left << "PASSWD"
+//          << setw(11) << left << "ADDRESS" << setw(11) << left << "CAR LIST"
+//          << endl
+//          << endl;
+
+//     for (auto CustomerTemp : customerData) {
+//       ii++;
+//       cout << "[" << ii << "]:" << setw(11) << left << CustomerTemp.getName()
+//            << setw(11) << left << CustomerTemp.getEngine() << setw(11) << left
+//            << CustomerTemp.getCarName() << setw(11) << left << CustomerTemp.getColor()
+//            << setw(11) << left << carTemp.getType() << setw(11) << left
+//            << carTemp.getPrice() << setw(11) << left << carTemp.getQuantity()
+//            << setw(11) << left << carTemp.getSaleQuan() << endl
+//            << endl;
+//     }
+//     int choice_num, modi_qty;
+//     char purchaseChoice;
+//   M:
+//     cout << endl << "1) 차량정보를 수정하시겠습니까? [Y/N] >> ";
+//     cin >> purchaseChoice;
+
+//     if (purchaseChoice == 'y' || purchaseChoice == 'Y') {
+//       cout << "2) 몇번 차량을 수정하시겠습니까? >> ";
+//       while (1) {
+//         cin >> choice_num;
+//         if (choice_num > carlist.size())
+//           cout << "잘못된 선택입니다! 재선택 >> ";
+//         else
+//           break;
+//       }
+//       cout << "3) 수량 변경 (증가 : x / 감소 : -x) >> ";
+//       cin >> modi_qty;
+//       if (modi_qty > 0) {
+//         cout << "해당 차량의 수량이 증가됩니다. "
+//              << carlist[choice_num - 1].getQuantity() << " ▶  "
+//              << carlist[choice_num - 1].getQuantity() + modi_qty << endl;
+//         carlist[choice_num - 1].quantityIncreasing(modi_qty);
+//         sleep(1);
+        
+//       } else if (modi_qty < 0 && ((carlist[choice_num-1].getQuantity() + modi_qty) > 0)) {
+        
+        
+//         carlist[choice_num - 1].quantityDecreasing(modi_qty * -1);
+//         cout << "해당 차량의 수량이 감소됩니다. "
+//              << carlist[choice_num - 1].getQuantity() << " ▶  "
+//              << carlist[choice_num - 1].getQuantity() + modi_qty << endl;
+//         sleep(1);
+//       }
+
+//       else if (modi_qty < 0 && ((carlist[choice_num-1].getQuantity() + modi_qty) < 0)) {
+        
+//         cout << " ERROR! : 수량이 0 보다 작습니다. " <<endl;
+//         cout << " 수정내용이 초기화 됩니다........ " <<endl;
+//         sleep(2);
+//       }
+
+//     } else if (purchaseChoice == 'n' || purchaseChoice == 'N')
+//       goto exit;
+
+//     else {
+//       cout << "잘못 누르셨습니다" << endl;
+//       goto M;
+//     }
+//   }
+//   exit:
+//   getchar();
+
 
 }
 
