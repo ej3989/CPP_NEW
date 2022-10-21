@@ -104,32 +104,31 @@ X:
 	buyUser.setMyCarList(tempcar[finalNumber-1]);
 	//tempcar[finalNumber-1].quantityDecreasing(-1);
 	auto tmp_id = tempcar[finalNumber-1].getCarId();
-	for(auto& G: carlist){
+	int i=0;
+	for(auto G: carlist){
 
 		if(G.getCarId()==tmp_id){
-			G.quantityDecreasing(1);
-			G.saleDecreasing(1);
-			//carlist[i].quantityDecreasing(1);
-			//carlist[i].saleIncreasing(1);
-
+			carlist[i].quantityDecreasing(1);
+			carlist[i].saleIncreasing(1);
+			cout<<carlist[i].getCarName() << "을 구매 하셨습니다." << endl;
 			//cout<<"quan test:" << G.getQuantity() << endl;
 			break;
 		}
+		i++;
 
-	}	
-	cout<<endl<<setw(25)<<left<<"Brand"<<setw(25)<<left<<"Engine"<<setw(25)<<left<<"carname"<<setw(25)<<left<<"Color"<<setw(25)<<left<<"Type"<<setw(25)<<left<<"Price"<<setw(25)<<left<<"Quantity"<<setw(25)<<left<<"slaeQuan"<<endl<<endl;
-	for(auto carTemp: carlist){	
-		cout<<endl<<setw(25)<<left<<carTemp.getBrand()<<setw(25)<<left<<carTemp.getEngine()<<setw(25)
-			<<left<<carTemp.getCarName()<<setw(25)<<left<<carTemp.getColor()<<setw(25)<<left<<carTemp.getType()
-			<<setw(25)<<left<<carTemp.getPrice()<<setw(25)<<left<<carTemp.getQuantity()<<setw(25)<<left<<carTemp.getSaleQuan()<<endl<<endl;
-		/////cout<<endl<<setw(30)<<left<<carlist[i].getBrand()<<setw(30)<<left<<carlist[i].getEngine()
-		//<<setw(30)<<left<<carlist[i].getCarName()<<setw(30)<<left<<carlist[i].getColor()<<setw(30)<<left
-		//<<carlist[i].getType()<<setw(30)<<left<<carlist[i].getSaleQuan()<<endl<<endl;
 	}
+	
+	//cout<<endl<<setw(25)<<left<<"Brand"<<setw(25)<<left<<"Engine"<<setw(25)<<left<<"carname"<<setw(25)<<left<<"Color"<<setw(25)<<left<<"Type"<<setw(25)<<left<<"Price"<<setw(25)<<left<<"Quantity"<<setw(25)<<left<<"slaeQuan"<<endl<<endl;
+	//for(auto carTemp: carlist){	
+	//	cout<<endl<<setw(25)<<left<<carTemp.getBrand()<<setw(25)<<left<<carTemp.getEngine()<<setw(25)
+	//		<<left<<carTemp.getCarName()<<setw(25)<<left<<carTemp.getColor()<<setw(25)<<left<<carTemp.getType()
+	//		<<setw(25)<<left<<carTemp.getPrice()<<setw(25)<<left<<carTemp.getQuantity()<<setw(25)<<left<<carTemp.getSaleQuan()<<endl<<endl;
+	//}
 
 	//	for(auto temp : buyUser.getMyCarList()){
 	//		cout<<"test" <<temp.getBrand()<< endl;
 	//	}
+
 
 	getchar();
 	getchar();
@@ -145,6 +144,7 @@ void totalManager::saveHuman(){
 }
 
 void totalManager::printCarList() {
+
   //	for( auto out_data : carlist){
   //		cout << out_data.getBrand() << out_data.getCarId() << endl;
   //	}
@@ -225,6 +225,7 @@ void totalManager::printCarList() {
   }
   exit:
   getchar();
+
 
 }
 
