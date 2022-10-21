@@ -173,7 +173,6 @@ void brouse(int superFlag,totalManager& King,Customer & nowUser,struct termio tb
         case 2:
 
 
-           cout<<endl<<setw(30)<<left<<"Brand"<<setw(30)<<left<<"Engine"<<setw(30)<<left<<"Car Name"<<setw(30)<<left<<"Color"<<setw(30)<<left<<"Type"<<setw(30)<<left<<"Price"<<endl<<endl;
             King.printTop5();
 
             break;
