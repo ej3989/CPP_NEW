@@ -13,7 +13,7 @@
 #define CR '\012'
 using namespace std;
 
-void brouse(int superFlag,totalManager& King,Customer * nowUser,struct termio tbuf,struct termio oldtbufr,vector<stockManageCar> &carList);
+void brouse(int superFlag,totalManager& King,Customer * nowUser,struct termio tbuf,struct termio oldtbufr,vector<stockManageCar> carList);
 int main(){
     totalManager King;
     King.loadCar();
@@ -114,7 +114,7 @@ int main(){
     
 
 }
-void brouse(int superFlag,totalManager& King,Customer * nowUser,struct termio tbuf,struct termio oldtbuf,vector<stockManageCar> &carList){
+void brouse(int superFlag,totalManager& King,Customer * nowUser,struct termio tbuf,struct termio oldtbuf,vector<stockManageCar> carList){
     while(1){
         nclear();
         if(ioctl(0, TCSETAF, &tbuf)==-1) {perror("ioctl"); exit(1);}
