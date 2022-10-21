@@ -198,12 +198,21 @@ void totalManager::printCarList() {
         carlist[choice_num - 1].quantityIncreasing(modi_qty);
         sleep(1);
         
-      } else if (modi_qty < 0) {
+      } else if (modi_qty < 0 && ((carlist[choice_num-1].getQuantity() + modi_qty) > 0)) {
+        
+        
         carlist[choice_num - 1].quantityDecreasing(modi_qty * -1);
         cout << "해당 차량의 수량이 감소됩니다. "
              << carlist[choice_num - 1].getQuantity() << " ▶  "
-             << carlist[choice_num - 1].getQuantity() - modi_qty << endl;
+             << carlist[choice_num - 1].getQuantity() + modi_qty << endl;
         sleep(1);
+      }
+
+      else if (modi_qty < 0 && ((carlist[choice_num-1].getQuantity() + modi_qty) < 0)) {
+        
+        cout << " ERROR! : 수량이 0 보다 작습니다. " <<endl;
+        cout << " 수정내용이 초기화 됩니다........ " <<endl;
+        sleep(2);
       }
 
     } else if (purchaseChoice == 'n' || purchaseChoice == 'N')
