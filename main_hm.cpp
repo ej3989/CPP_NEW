@@ -170,6 +170,7 @@ void brouse(int superFlag,totalManager& King,Customer & nowUser,struct termio tb
         case 2:
             //탑리스트 stock 소환하기 필요
            cout<<endl<<setw(30)<<left<<"브랜드"<<setw(30)<<left<<"엔진"<<setw(30)<<left<<"차량이름"<<setw(30)<<left<<"색상"<<setw(30)<<left<<"타입"<<setw(30)<<left<<"가격"<<endl<<endl;
+		   King.printTop5();
             //stockMangagerCar 리스트 소환하기.
             break;
         case 3:
@@ -219,6 +220,7 @@ void brouse(int superFlag,totalManager& King,Customer & nowUser,struct termio tb
             King.addCarList();
             break;
         case 6:
+			King.printCarList();
             //재고관리 만들어주세요
             break;
         case 9:
