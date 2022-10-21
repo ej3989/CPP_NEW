@@ -201,7 +201,17 @@ void brouse(int superFlag,totalManager& King,Customer & nowUser,struct termio tb
             cout<<right<<setw(46)<<"1.HKC  2.KIA  3.BENTZ"<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl;
             cout<<"===========================================================================";
             int choiceBrand;
+            ZZ:
+            try{
             cin>>choiceBrand;
+            if(cin.fail()) throw "숫자를 입력해주세요";
+            }
+            catch(const char* negative){
+            cout<<negative<<endl;
+            cin.clear();
+            cin.ignore();
+            goto ZZ;
+            }
             if(ioctl(0, TCSETAF, &oldtbuf)==-1) {perror("ioctl"); exit(1);}
             XX:
             nclear();
@@ -212,7 +222,16 @@ void brouse(int superFlag,totalManager& King,Customer & nowUser,struct termio tb
             cout<<"==========================================================================="<<endl;
             gotoxy(11,35);
             int xPos,yPos;
+            try{
             cin>>xPos>>yPos;
+            if(cin.fail()) {gotoxy(15,35);throw "숫자를 입력해주세요";}
+            }
+            catch(const char* negative){
+            cout<<negative<<endl;
+            cin.clear();
+            cin.ignore();
+            goto XX;
+            }
             if(xPos>30 || yPos>70){cout<<"잘못입력하셨습니다"<<endl; goto XX;}
             nclear();
             if(choiceBrand==1){
