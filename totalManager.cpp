@@ -117,10 +117,11 @@ X:
 		}
 
 	}	
+	cout<<endl<<setw(25)<<left<<"Brand"<<setw(25)<<left<<"Engine"<<setw(25)<<left<<"carname"<<setw(25)<<left<<"Color"<<setw(25)<<left<<"Type"<<setw(25)<<left<<"Price"<<setw(25)<<left<<"Quantity"<<setw(25)<<left<<"slaeQuan"<<endl<<endl;
 	for(auto carTemp: carlist){	
-		cout<<endl<<setw(30)<<left<<carTemp.getBrand()<<setw(30)<<left<<carTemp.getEngine()<<setw(30)
-			<<left<<carTemp.getCarName()<<setw(30)<<left<<carTemp.getColor()<<setw(30)<<left<<carTemp.getType()
-			<<setw(30)<<left<<carTemp.getPrice()<<setw(30)<<left<<carTemp.getQuantity()<<setw(30)<<left<<carTemp.getSaleQuan()<<endl<<endl;
+		cout<<endl<<setw(25)<<left<<carTemp.getBrand()<<setw(25)<<left<<carTemp.getEngine()<<setw(25)
+			<<left<<carTemp.getCarName()<<setw(25)<<left<<carTemp.getColor()<<setw(25)<<left<<carTemp.getType()
+			<<setw(25)<<left<<carTemp.getPrice()<<setw(25)<<left<<carTemp.getQuantity()<<setw(25)<<left<<carTemp.getSaleQuan()<<endl<<endl;
 		/////cout<<endl<<setw(30)<<left<<carlist[i].getBrand()<<setw(30)<<left<<carlist[i].getEngine()
 		//<<setw(30)<<left<<carlist[i].getCarName()<<setw(30)<<left<<carlist[i].getColor()<<setw(30)<<left
 		//<<carlist[i].getType()<<setw(30)<<left<<carlist[i].getSaleQuan()<<endl<<endl;
