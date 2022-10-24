@@ -109,6 +109,7 @@ X:
 	try{
 		cin>>finalNumber;
 		if(cin.fail()) throw error;
+		if(finalNumber>tempcar.size()) throw error;
 	}
 	catch(char x){
 		cout<<"오타발생"<<endl;
