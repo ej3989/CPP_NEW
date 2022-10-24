@@ -4,6 +4,8 @@
 
 # CPP_NEW
 compile
+
+
   g++ *.cpp -o main
   
 start 
