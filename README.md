@@ -13,3 +13,6 @@ start
   12345678
   
 이 후 프로그램은 내부 명시에 되어 있음 
+
+
+https://gitmind.com/app/flowchart/4pmbg5z103
