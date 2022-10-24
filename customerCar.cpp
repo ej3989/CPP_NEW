@@ -4,6 +4,8 @@
 #include <vector>
 #include <iostream>
 #include <queue>
+#include <algorithm>
+#include <unistd.h>
 using namespace std;
 
 void BFS(int x, int y,int(*visit)[70], int(*check)[70], int (*map)[70],vector<pair<int,int>> asPosition);
@@ -72,6 +74,7 @@ void BFS(int x, int y,int(*visit)[70], int(*check)[70], int (*map)[70],vector<pa
         tracking.push_back(mother[tracking.back().first][tracking.back().second]);
         if(tracking.back().first==originX && tracking.back().second==originY) break;
     }
+    reverse(tracking.begin(),tracking.end());
     cout<<"===========================================================================";
     cout<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl;
     cout<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl;
@@ -94,6 +97,7 @@ void BFS(int x, int y,int(*visit)[70], int(*check)[70], int (*map)[70],vector<pa
         goto ZZ;
     }
     nclear();
+    int check=0;
     switch(a){
         case 1:
         
@@ -140,28 +144,36 @@ void BFS(int x, int y,int(*visit)[70], int(*check)[70], int (*map)[70],vector<pa
             printf("\033[0;31m레드\033[0m");
             printf("가 목적지 입니다.\n");
             getchar();
-            gotoxy(0,0);
-            for(int i=0;i<30;i++){
-                for(int j=0;j<70;j++){
-                    if(i==0&&j==0)cout<<endl;
-                    int flag =0;
-                    if(i==MinX&&j==MinY){printf("\033[0;31m♥\033[0m"); continue;}
-                    for(auto V : asPosition){
-                        if(i==V.first&&j==V.second){printf("\033[0;33mO\033[0m"); flag =1; continue;}
-                    }
-                    if(flag==1)continue;
-                    if(i==originX && j==originY){printf("\033[0;34m♥\033[0m"); continue;}
-                    for(auto V : tracking){
-                        if(i==V.first&&j==V.second){
-                            printf("\033[0;33m♥\033[0m"); flag =1; continue;}
-                    }
-                    if(flag==1)continue;
-                    if(map[i][j]==0) printf("\033[0;30mO\033[0m");
-                    else printf("\033[0;32mO\033[0m");
+            while(1){
+                usleep(7000);
+                check++;
+                gotoxy(0,0);
+                for(int i=0;i<30;i++){
+                    for(int j=0;j<70;j++){
+                        if(i==0&&j==0)cout<<endl;
+                        int flag =0;
+                        if(i==MinX&&j==MinY){printf("\033[0;31m♥\033[0m"); continue;}
+                        for(auto V : asPosition){
+                            if(i==V.first&&j==V.second){printf("\033[0;33mO\033[0m"); flag =1; continue;}
+                        }
+                        if(flag==1)continue;
+                        if(i==originX && j==originY){printf("\033[0;34m♥\033[0m"); continue;}
+                        int check_track=0;
+                        for(auto V : tracking){
+                            if(i==V.first&&j==V.second){
+                                printf("\033[0;33m♥\033[0m"); flag =1; continue;
+                                }
+                            check_track++;
+                            if(check==check_track) break;
+                            
+                        }
+                        if(flag==1)continue;
+                        if(map[i][j]==0) printf("\033[0;30mO\033[0m");
+                        else printf("\033[0;32mO\033[0m");
                 }
-
                 cout<<endl;
-
+                }
+                if(check==MinLong) break;
             }
             getchar();
             break;
