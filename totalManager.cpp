@@ -219,7 +219,17 @@ M:
 					break;
 			}
 			cout << "3) 수량 변경 (증가 : x / 감소 : -x) >> ";
-			cin >> modi_qty;
+L:
+			try{
+				cin >> modi_qty;
+				if(cin.fail()) throw "error 발생"  ;
+			}
+			catch(const char* xx){
+				cout<<xx<<endl;
+				cin.clear();
+				cin.ignore();
+				goto L;
+			}
 			if (modi_qty > 0) {
 				cout << "해당 차량의 수량이 증가됩니다. "
 					<< carlist[choice_num - 1].getQuantity() << " ▶  "
