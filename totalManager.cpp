@@ -122,7 +122,7 @@ X:
 	if(tempcar[finalNumber-1].getQuantity() == 0){
 		cout<<tempcar[finalNumber-1].getCarName() << "재고가 없습니다.  구매 하실 수 없습니다. " << endl;
 		getchar();
-		getchar();
+		sleep(1);
 
 		return true;
 
@@ -160,7 +160,7 @@ X:
 
 
 	getchar();
-	getchar();
+	sleep(1);
 	return true;
 
 }
