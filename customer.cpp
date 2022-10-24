@@ -52,3 +52,29 @@ int Customer::getCarCount() { return car_count; }
 void Customer::setMyCarList(Car paid_car){
   this->my_car_list.push_back(paid_car);
 }
+vector<Car> Customer::getMyCarList(){
+	int ii = 0;
+	cout << "=======================  MY CAR LIST ♬ =========================="
+		"" << endl;
+	cout << endl
+		<< setw(11) << left << "[n]:Brand" << setw(11) << left << "Car Name"
+		<< setw(11) << left << "Engline" << setw(11) << left << "Type"
+		<< setw(11) << left << "Color" << endl
+		<< endl
+		<< endl;
+
+	for (auto g : my_car_list) {
+		ii++;
+		cout << "[" << ii << "]:" << setw(5) << left << g.getBrand() << setw(11)
+			<< left << g.getCarName() << setw(11) << left << g.getEngine()
+			<< setw(11) << left << g.getType() << setw(15) << left
+			<< g.getColor() << endl
+			<< endl;
+	}
+	cout << "================================================================="
+		<< endl;
+	return my_car_list;
+}
+
+
+
