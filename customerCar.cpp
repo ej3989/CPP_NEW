@@ -89,7 +89,7 @@ void BFS(int x, int y,int(*visit)[70], int(*check)[70], int (*map)[70],vector<pa
     try{
     cin>>a;
     if(cin.fail()) throw "숫자를 입력하세요";
-    } ////////
+    } ////////asdfasdfasdf
     catch(const char* negative){
         cout<<negative<<endl;
         cin.clear();
