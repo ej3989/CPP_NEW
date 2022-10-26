@@ -31,3 +31,4 @@ compile
 
 https://gitmind.com/app/flowchart/4pmbg5z103
 github에서 수정
+github에서 수정해서 충돌이 나는지 확인 중
