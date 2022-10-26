@@ -32,4 +32,5 @@ compile
 https://gitmind.com/app/flowchart/4pmbg5z103
 github에서 수정
 충돌을 만들어 보자
-github에서 수정해서 충돌이 나는지 확인 중
+github에서 수정해서 충돌이 나는지 확인 2
+github 다시충돌나게 수정 
