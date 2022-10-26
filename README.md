@@ -31,3 +31,4 @@ compile
 
 https://gitmind.com/app/flowchart/4pmbg5z103
 github에서 수정
+충돌을 만들어 보자
